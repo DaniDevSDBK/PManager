@@ -1,0 +1,403 @@
+﻿<UserControl x:Class="PManager.View.AddAppView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PManager.View"
+             xmlns:viewModel="clr-namespace:PManager.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <!--Diseño: 740 de ancho-->
+
+    <UserControl.DataContext>
+        <viewModel:AddAppViewModel/>
+    </UserControl.DataContext>
+
+    <Border CornerRadius="25"
+            Margin="30,30,30,30"
+            Background="DarkCyan">
+
+        <Grid Background="Transparent">
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="lbTitle"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   Margin="0,10,0,340"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Foreground="LightCyan">
+
+                <TextBlock TextDecorations="Underline" 
+                           Text="Add Your New App"/>
+            </Label>
+
+            <!--App Form-->
+            <Grid Grid.Column="0">
+                
+                <!--Columns-->
+                <Grid.ColumnDefinitions>
+                    
+                    <!--Blank-->
+                    <ColumnDefinition Width="10"/>
+                    <!--LabelsColumn-->
+                    <ColumnDefinition Width="*"/>
+                    <!--Blank-->
+                    <ColumnDefinition Width="10"/>
+                    <!--InputDataColumns-->
+                    <ColumnDefinition Width="*"/>
+                    <!--Blank-->
+                    <ColumnDefinition Width="10"/>
+
+                </Grid.ColumnDefinitions>
+                
+                <!--Rows-->
+                <Grid.RowDefinitions>
+
+                    <!--Blank-->
+                    <RowDefinition Height="10"/>
+                    <!--Title-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="*"/>
+                    <!--Field1_AppName-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="*"/>
+                    <!--Field2_UserAppName-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="*"/>
+                    <!--Field3_UserAppPassword-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="*"/>
+                    <!--Field4_UserAppPassordConfirm-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="*"/>
+                    <!--SaveButton-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="10"/>
+
+                </Grid.RowDefinitions>
+
+                <!--AppForm-->
+                <!--<Border CornerRadius="10"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Background="Azure">
+
+                    <Label x:Name="lblTitleView"
+                       Background="Transparent"
+                       Content="Add a New App"
+                       HorizontalContentAlignment="Center"
+                       VerticalContentAlignment="Center"/>
+                </Border>-->
+                
+                <!--Labels-->
+                <Label x:Name="lbTitleApp"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="3"
+                       Background="Transparent"
+                       Content="Fill the form to Add your User and Password:"
+                       HorizontalContentAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="LightCyan"/>
+                
+                <Label x:Name="lbAppName"
+                       Grid.Column="1"
+                       Grid.Row="3"
+                       Background="Transparent"
+                       Content="App Name:"
+                       HorizontalContentAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="LightCyan"/>
+
+                <Label x:Name="lbUserAppName"
+                       Grid.Column="1"
+                       Grid.Row="5"
+                       Background="Transparent"
+                       Content="User App Name:"
+                       HorizontalContentAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="LightCyan"/>
+
+                <Label x:Name="lbUserAppPassword"
+                       Grid.Column="1"
+                       Grid.Row="7"
+                       Background="Transparent"
+                       Content="User App Password:"
+                       HorizontalContentAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="LightCyan"/>
+
+                <Label x:Name="lbUserAppPasswordConfirm"
+                       Grid.Column="1"
+                       Grid.Row="9"
+                       Background="Transparent"
+                       Content="User App Password Confirm:"
+                       HorizontalContentAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="LightCyan"/>
+
+                <!--InputData-->
+                <Border CornerRadius="10"
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    Background="Azure">
+
+                    <TextBox x:Name="txtNameApp"
+                         Background="Transparent"
+                         Text="{Binding AppName, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         BorderThickness="0"/>
+                </Border>
+
+                <Border CornerRadius="10"
+                    Grid.Row="5"
+                    Grid.Column="3"
+                    Background="Azure">
+
+                    <TextBox x:Name="txtUserName"
+                         Background="Transparent"
+                         Text="{Binding UserAppName, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         BorderThickness="0"/>
+                    
+                </Border>
+
+                <Border CornerRadius="10"
+                    Grid.Row="7"
+                    Grid.Column="3"
+                    Background="Azure">
+
+                    <TextBox x:Name="txtAppPwd"
+                         Background="Transparent"
+                         Text="{Binding UserAppPwd, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         BorderThickness="0"/>
+                    
+                </Border>
+
+                <Border CornerRadius="10"
+                    Grid.Row="9"
+                    Grid.Column="3"
+                    Background="Azure">
+
+                    <TextBox x:Name="txtConfirmAppPwd"
+                         Background="Transparent"
+                         Text="{Binding UserAppPwdConfirm, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         BorderThickness="0"/>
+                </Border>
+
+                <Border CornerRadius="10"
+                    Grid.Column="1"
+                    Grid.Row="11"
+                    Grid.ColumnSpan="3"
+                    Background="Azure">
+
+                    <Button x:Name="btnSave"
+                        Command="{Binding SaveNewAppCmd}"
+                        Content="Save"
+                        Background="Transparent"
+                        BorderThickness="0"/>
+                </Border>
+            </Grid>
+            
+            <!--Password Generator-->
+            <Grid Grid.Column="1">
+
+                <!--Columns-->
+                <Grid.ColumnDefinitions>
+
+                    <!--Blank-->
+                    <ColumnDefinition Width="10"/>
+                    <!--LabelsColumn-->
+                    <ColumnDefinition Width="*"/>
+                    <!--Blank-->
+                    <ColumnDefinition Width="10"/>
+                    <!--InputDataColumns-->
+                    <ColumnDefinition Width="*"/>
+                    <!--Blank-->
+                    <ColumnDefinition Width="10"/>
+
+                </Grid.ColumnDefinitions>
+
+                <!--Rows-->
+                <Grid.RowDefinitions>
+
+                    <!--Blank-->
+                    <RowDefinition Height="10"/>
+                    <!--Title-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="*"/>
+                    <!--Field1_AppName-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="*"/>
+                    <!--Field2_UserAppName-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="*"/>
+                    <!--Field3_UserAppPassword-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="*"/>
+                    <!--Field4_UserAppPassordConfirm-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="*"/>
+                    <!--SaveButton-->
+                    <RowDefinition Height="*"/>
+                    <!--Blank-->
+                    <RowDefinition Height="10"/>
+
+                </Grid.RowDefinitions>
+
+                <!--Labels-->
+                <Label x:Name="lbTitleInfo"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="3"
+                       Background="Transparent"
+                       Content="Create a random personalized password:"
+                       HorizontalContentAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="LightCyan"/>
+                
+                <Label x:Name="lbPasswordLength"
+                       Grid.Column="1"
+                       Grid.Row="3"
+                       Background="Transparent"
+                       Content="Password Length:"
+                       HorizontalContentAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="LightCyan"/>
+
+                <Label x:Name="lbQuantityOfNumbers"
+                       Grid.Column="1"
+                       Grid.Row="5"
+                       Background="Transparent"
+                       Content="Quantity Of Numbers:"
+                       HorizontalContentAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="LightCyan"/>
+
+                <Label x:Name="lbCapitals"
+                       Grid.Column="1"
+                       Grid.Row="7"
+                       Background="Transparent"
+                       Content="Capitals Number:"
+                       HorizontalContentAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="LightCyan"/>
+
+                <Label x:Name="lbLowerCase"
+                       Grid.Column="1"
+                       Grid.Row="9"
+                       Background="Transparent"
+                       Content="Lower Case Number:"
+                       HorizontalContentAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="LightCyan"/>
+
+                <!--InputData-->
+                <Border CornerRadius="10"
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    Background="Azure">
+
+                    <TextBox x:Name="txtPasswordLength"
+                         Background="Transparent"
+                         Text="{Binding PasswordLength, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         BorderThickness="0"/>
+                    
+                </Border>
+
+                <Border CornerRadius="10"
+                    Grid.Row="5"
+                    Grid.Column="3"
+                    Background="Azure">
+
+                    <TextBox x:Name="txtQuantityOfNumbers"
+                         Background="Transparent"
+                         Text="{Binding QuantityOfNumbers, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         BorderThickness="0"/>
+                </Border>
+
+                <Border CornerRadius="10"
+                    Grid.Row="7"
+                    Grid.Column="3"
+                    Background="Azure">
+
+                    <TextBox x:Name="txtCapitals"
+                         Background="Transparent"
+                         Text="{Binding CapitalsNumber, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         BorderThickness="0"/>
+                </Border>
+
+                <Border CornerRadius="10"
+                    Grid.Row="9"
+                    Grid.Column="3"
+                    Background="Azure">
+
+                    <TextBox x:Name="txtLowerCase"
+                         Background="Transparent"
+                         Text="{Binding LowerCaseNumber, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         BorderThickness="0"/>
+                </Border>
+
+                <CheckBox x:Name="cbSpecialChars"
+                          Content="Habilitate special characters when creating the password."
+                          IsChecked="{Binding SpecialChar, UpdateSourceTrigger=PropertyChanged}"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="3"
+                          Grid.Row="10"
+                          Margin="10"
+                          Foreground="LightCyan"/>
+
+                <Border CornerRadius="10"
+                    Grid.Column="1"
+                    Grid.Row="11"
+                    Grid.ColumnSpan="3"
+                    Background="Azure">
+
+                    <Button x:Name="btnGeneratePassword"
+                        Command="{Binding GeneratePasswordCmd}"
+                        Content="Generate Password"
+                        Background="Transparent"
+                        BorderThickness="0"/>
+                </Border>
+
+            </Grid>
+
+        </Grid>
+
+
+    </Border>
+</UserControl>

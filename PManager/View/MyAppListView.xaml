@@ -1,0 +1,301 @@
+﻿<UserControl x:Class="PManager.View.MyAppListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PManager.View"
+             xmlns:viewModel="clr-namespace:PManager.ViewModel"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <viewModel:MyAppListViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ExpanderStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <Border Margin="10"
+            Background="DarkBlue">
+
+        <Grid>
+
+            <!--Columns-->
+            <Grid.ColumnDefinitions>
+
+                <!--Blank-->
+                <ColumnDefinition Width="10"/>
+                <!--Content-->
+                <ColumnDefinition Width="*"/>
+                <!--Blank-->
+                <ColumnDefinition Width="10"/>
+
+            </Grid.ColumnDefinitions>
+
+            <!--Rows-->
+            <Grid.RowDefinitions>
+
+                <!--Blank-->
+                <RowDefinition Height="10"/>
+                <!--HeaderContent-->
+                <RowDefinition Height="50"/>
+                <!--Blank-->
+                <RowDefinition Height="10"/>
+                <!--BodyContent-->
+                <RowDefinition Height="*"/>
+                <!--Blank-->
+                <RowDefinition Height="10"/>
+
+            </Grid.RowDefinitions>
+
+            <!--HeaderContent-->
+            <Grid Grid.Row="1"
+                  Grid.ColumnSpan="3">
+
+                <!--Columns-->
+                <Grid.ColumnDefinitions>
+
+                    <!--Blank-->
+                    <ColumnDefinition Width="10"/>
+                    <!--AppNameIcon-->
+                    <ColumnDefinition Width="25"/>
+                    <!--AppName-->
+                    <ColumnDefinition Width="*"/>
+                    <!--Blank-->
+                    <ColumnDefinition Width="10"/>
+                    <!--NumberOfUsersIcon-->
+                    <ColumnDefinition Width="25"/>
+                    <!--NumberOfUsers-->
+                    <ColumnDefinition Width="*"/>
+                    <!--Blank-->
+                    <ColumnDefinition Width="10"/>
+                    <!--NumberOfPasswordsIcon-->
+                    <ColumnDefinition Width="25"/>
+                    <!--NumberOfPasswords-->
+                    <ColumnDefinition Width="*"/>
+                    <!--Blank-->
+                    <ColumnDefinition Width="10"/>
+                    <!--SearchFilterIcon-->
+                    <ColumnDefinition Width="25"/>
+                    <!--SearchFilter-->
+                    <ColumnDefinition Width="*"/>
+                    <!--Blank-->
+                    <ColumnDefinition Width="10"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalContentAlignment="Right"
+                       VerticalContentAlignment="Center">
+
+                    <fa:IconImage Icon="AppStore" Width="25" Height="14" Foreground="LightCyan"/>
+
+                </Label>
+
+                <Label Grid.Row="1"
+                       Grid.Column="2"
+                       Content="AppName"
+                       HorizontalContentAlignment="Left"
+                       VerticalContentAlignment="Center"
+                       Foreground="LightCyan"/>
+
+                <Label Grid.Row="1"
+                       Grid.Column="4"
+                       HorizontalContentAlignment="Right"
+                       VerticalContentAlignment="Center">
+
+                    <fa:IconImage Icon="User" Width="25" Height="14" Foreground="LightCyan"/>
+
+                </Label>
+
+                <Label Grid.Row="1"
+                       Grid.Column="5"
+                       Content="Users"
+                       HorizontalContentAlignment="Left"
+                       VerticalContentAlignment="Center"
+                       Foreground="LightCyan"/>
+
+                <Label Grid.Row="1"
+                       Grid.Column="7"
+                       HorizontalContentAlignment="Right"
+                       VerticalContentAlignment="Center">
+
+                    <fa:IconImage Icon="Key" Width="25" Height="14" Foreground="LightCyan"/>
+
+                </Label>
+
+                <Label Grid.Row="1"
+                       Grid.Column="8"
+                       Content="Passwords"
+                       HorizontalContentAlignment="Left"
+                       VerticalContentAlignment="Center"
+                       Foreground="LightCyan"/>
+
+                <Label Grid.Row="1"
+                       Grid.Column="10"
+                       HorizontalContentAlignment="Right"
+                       VerticalContentAlignment="Center"
+                       Foreground="LightCyan">
+
+                    <fa:IconImage Icon="Search" Width="25" Height="14" Foreground="LightCyan"/>
+
+                </Label>
+
+                <TextBox
+                       Grid.Column="10"
+                       Text="Search"
+                       HorizontalContentAlignment="Left"
+                       VerticalContentAlignment="Center"
+                       Foreground="LightCyan"
+                       Background="Transparent"
+                       BorderThickness="0" Grid.ColumnSpan="2" Margin="24,0,0,0"/>
+
+            </Grid>
+
+            <!--Separator-->
+            <Separator Grid.Row="2"
+                       Grid.Column="1"/>
+
+            <!--BodyContent-->
+            <ListView Grid.Row="3"
+                      Grid.Column="1"
+                      Background="Transparent"
+                      ItemsSource="{Binding Items}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+
+                        <Expander IsExpanded="False"
+                                  Foreground="LightCyan" 
+                                  Width="734">
+
+                            <Expander.Header>
+
+                                <Grid Width="710">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="14*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <!--Blank-->
+                                        <ColumnDefinition Width="10"/>
+                                        <!--Header-->
+                                        <ColumnDefinition Width="100"/>
+                                        <!--Blank-->
+                                        <ColumnDefinition Width="*"/>
+                                        <!--Header-->
+                                        <ColumnDefinition Width="30"/>
+                                        <!--Blank-->
+                                        <ColumnDefinition Width="320"/>
+                                        <!--Header-->
+                                        <ColumnDefinition Width="30"/>
+                                        <!--Blank-->
+                                        <ColumnDefinition Width="*"/>
+                                        <!--Header-->
+                                        <ColumnDefinition Width="10"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding AppName}"
+                                                    Grid.Column="1" Grid.RowSpan="2" TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding UsersNumber}"
+                                                   Grid.Column="3" Grid.RowSpan="2" TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding UsersNumber}"
+                                                   Grid.Column="5" Grid.RowSpan="2" TextAlignment="Center"/>
+
+                                </Grid>
+
+                            </Expander.Header>
+
+                            <Expander.Content>
+
+                                <Grid>
+
+                                    <ListView ItemsSource="{Binding ItemsContent}" Background="Transparent" BorderThickness="0">
+
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+
+                                                <Grid Width="710">
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="14*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <Grid.ColumnDefinitions>
+
+                                                        <!--Blank-->
+                                                        <ColumnDefinition Width="260"/>
+                                                        <!--UserAppName-->
+                                                        <ColumnDefinition Width="*"/>
+                                                        <!--Blank-->
+                                                        <ColumnDefinition Width="200"/>
+                                                        <!--UserAppPassword-->
+                                                        <ColumnDefinition Width="*"/>
+                                                        <!--Blank-->
+                                                        <ColumnDefinition Width="10"/>
+                                                        <!--EditIcon-->
+                                                        <ColumnDefinition Width="20"/>
+                                                        <!--CopyIcon-->
+                                                        <ColumnDefinition Width="20"/>
+                                                        <!--DeleteIcon-->
+                                                        <ColumnDefinition Width="20"/>
+
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Label Grid.Column="1" Content="{Binding UserAppName}" Foreground="LightCyan" Grid.RowSpan="2"/>
+                                                    <Label Grid.Column="3" Content="{Binding UserAppPassword}" Foreground="LightCyan" Grid.RowSpan="2"/>
+
+                                                    <Button Style="{Binding itemButton}" Grid.Column="5" Grid.RowSpan="2" Background="Transparent" BorderThickness="0">
+
+                                                        <fa:IconImage Icon="Edit" Foreground="LightCyan"/>
+
+                                                    </Button>
+
+                                                    <Button Style="{Binding itemButton}" Grid.Column="6" Grid.RowSpan="2" Background="Transparent" BorderThickness="0" Command="{Binding CopyPasswordCommand}">
+
+                                                        <fa:IconImage Icon="Copy" Foreground="LightCyan"/>
+
+                                                    </Button>
+
+                                                    <Button Style="{Binding itemButton}" Grid.Column="7" Grid.RowSpan="2" Background="Transparent" BorderThickness="0" Command="{Binding DeleteRowCommand}">
+
+                                                        <fa:IconImage Icon="DeleteLeft" Foreground="LightCyan"/>
+
+                                                    </Button>
+
+                                                </Grid>
+
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+
+                                    </ListView>
+                                    
+                                </Grid>
+
+                            </Expander.Content>
+                        </Expander>
+
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </Border>
+
+</UserControl>

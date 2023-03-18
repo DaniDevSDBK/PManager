@@ -1,0 +1,174 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
+
+    <Style x:Key="menuButton" TargetType="RadioButton">
+        
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Margin" Value="-5,0,0,5"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource BorderColor2}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="4,0,0,0"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+
+                        <ContentPresenter HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <!--Events-->
+        <Style.Triggers>
+            
+            <!--Mouse Over Back Color-->
+            <Trigger Property="IsMouseOver" Value="True">
+                
+                <Setter Property="Height" Value="50"/>
+                <Setter Property="Margin" Value="0,0,0,5"/>
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                            <GradientStop Color="{StaticResource primaryBackColor4}" Offset="0"/>
+                            <GradientStop Color="{StaticResource primaryBackColor4}" Offset="1"/>
+
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" Value="{StaticResource BorderColor1}"/>
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+                
+            </Trigger>
+            
+            <!--Active Button Back Color--> 
+            <Trigger Property="IsChecked" Value="True">
+
+                <Setter Property="Margin" Value="0,0,0,5"/>
+                <Setter Property="Background" Value="{StaticResource BorderColor3}"/>
+                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+
+            </Trigger>
+
+        </Style.Triggers>
+       
+    </Style>
+    
+    <!--Botones ControlBar-->
+    <Style x:Key="controlButton" TargetType="Button">
+
+        <Setter Property="Height" Value="10"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource BorderColor2}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+
+        <!--Events-->
+        <Style.Triggers>
+
+            <!--Mouse Over Back Color-->
+            <Trigger Property="IsMouseOver" Value="True">
+
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                            <GradientStop Color="{StaticResource primaryBackColor4}" Offset="0"/>
+                            <GradientStop Color="{StaticResource primaryBackColor4}" Offset="1"/>
+
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" Value="{StaticResource BorderColor1}"/>
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+
+            </Trigger>
+
+        </Style.Triggers>
+
+    </Style>
+
+    <!--Botones ItemsCntent-->
+    <Style x:Key="itemButton" TargetType="Button">
+
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+
+        <!--Events-->
+        <Style.Triggers>
+
+            <!--Mouse Over Back Color-->
+            <Trigger Property="IsMouseOver" Value="True">
+
+                <Setter Property="Background" Value="Transparent"/>
+
+            </Trigger>
+
+        </Style.Triggers>
+
+    </Style>
+
+    <!--Iconos-->
+    <Style x:Key="btnIcon" TargetType="fa:IconImage">
+        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource = {RelativeSource AncestorType=RadioButton}}"/>
+        <Setter Property="Width" Value="22"/>
+        <Setter Property="Height" Value="30"/>
+    </Style>
+
+    <!--Iconos-->
+    <Style x:Key="controlIcon" TargetType="fa:IconImage">
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource = {RelativeSource AncestorType=Button}}"/>
+        <Setter Property="Width" Value="10"/>
+        <Setter Property="Height" Value="10"/>
+    </Style>
+
+    <!--Texto Boton-->
+    <Style x:Key="btnText" TargetType="TextBlock">
+
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Margin" Value="5,0,0,0"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+
+    </Style>
+    
+    <!--Botones App-->
+    <Style x:Key="calcButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="DarkGoldenrod"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Goldenrod"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate x:Key="calcButtonTemplate" TargetType="Button">
+
+        <Border CornerRadius="25" Background="{TemplateBinding Background}">
+            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+    </ControlTemplate>
+
+    <!--Exit Button-->
+    <Style x:Key="exitButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Red"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Content" Value="X"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="LightPink"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
+  

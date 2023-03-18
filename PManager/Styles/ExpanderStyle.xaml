@@ -1,0 +1,64 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="ModernToggleButtonStyle" TargetType="ToggleButton">
+
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="LightCyan"/>
+        <Setter Property="BorderBrush" Value="Cyan"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <Ellipse x:Name="circle"
+                             Stroke="{TemplateBinding BorderBrush}"
+                             StrokeThickness="2"
+                             Fill="{TemplateBinding Background}"/>
+                        <Path x:Name="checkmark"
+                          Data="M10,5 L15,10 L20,5"
+                          Stroke="{TemplateBinding Foreground}"
+                          StrokeThickness="2"
+                          Visibility="Collapsed"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="checkmark" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    <ControlTemplate x:Key="ModernExpanderTemplate" TargetType="Expander">
+        <Grid Background="{TemplateBinding Background}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{TemplateBinding Header}"
+                       FontWeight="Bold"
+                       Margin="5,0,0,0"/>
+                <ToggleButton x:Name="ExpanderButton"
+                          Style="{StaticResource ModernToggleButtonStyle}"
+                          IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                          Content="Expand/Collapse"/>
+            </StackPanel>
+            <ContentPresenter Grid.Row="1"
+                          Content="{TemplateBinding Content}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          Margin="5"
+                          Visibility="Visible"/>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="ModernExpanderStyle" TargetType="Expander">
+        <Setter Property="Template" Value="{StaticResource ModernExpanderTemplate}"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+</ResourceDictionary>
