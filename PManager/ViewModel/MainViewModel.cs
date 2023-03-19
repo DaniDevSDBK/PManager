@@ -106,6 +106,7 @@ namespace PManager.ViewModel
                 {
                     UserName = user.UserName,
                     DisplayName = $"{user.Name} {user.LastName}",
+                    Email= user.Email,
                     ProfilePicture = ByteArrayToBitmapImage(user.ProfilePicture)
             };
 

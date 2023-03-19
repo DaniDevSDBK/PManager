@@ -16,6 +16,7 @@ namespace PManager.Model
 
         public String UserName { get; set; }
         public String DisplayName { get; set; }
+        public String Email { get; set; }
         public BitmapImage ProfilePicture { get; set; }
 
     }
