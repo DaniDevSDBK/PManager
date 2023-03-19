@@ -51,6 +51,10 @@
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
 
                 </Grid.RowDefinitions>
 
@@ -115,11 +119,11 @@
                          FontSize="18"
                          Width="Auto"
                          Grid.ColumnSpan="2"
-                         Foreground="LightCyan"
+                         Foreground="Gray"
                          HorizontalContentAlignment="Left"
                          VerticalAlignment="Top"
                          VerticalContentAlignment="Bottom"
-                         Text="{Binding CurrentUserAccount.Email}"
+                         Text="New Password"
                          Style="{StaticResource SingleLineTextBox}"/>
 
             </Grid>
