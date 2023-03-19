@@ -76,7 +76,7 @@ namespace PManager.Repositorios
                             UserName = reader[1].ToString(),
                             Name = reader[1].ToString(),
                             Email = reader[3].ToString(),
-                            ProfilePicture = (byte[])reader[4]
+                            ProfilePicture = (byte[])reader[4],
                         };
                     }
                 }

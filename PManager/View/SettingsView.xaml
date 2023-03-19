@@ -15,8 +15,30 @@
     <Grid Background="DarkBlue">
         
         <!--Rows Deifnitions-->
+        <Grid.RowDefinitions>
+            
+            <!--Blank-->
+            <RowDefinition Height="10"/>
+            <!--Content-->
+            <RowDefinition Height="*"/>
+            <!--Blank-->
+            <RowDefinition Height="10"/>
+
+        </Grid.RowDefinitions>
         
         <!--Columns Definitions-->
+        <Grid.ColumnDefinitions>
+            
+            <!--Blank-->
+            <ColumnDefinition Width="10"/>
+            <!--Content-->
+            <ColumnDefinition Width="*"/>
+            <!--Blank-->
+            <ColumnDefinition Width="10"/>
+
+        </Grid.ColumnDefinitions>
+        
+        
             
     </Grid>
 </UserControl>

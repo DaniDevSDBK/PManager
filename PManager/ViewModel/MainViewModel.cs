@@ -107,7 +107,7 @@ namespace PManager.ViewModel
                     UserName = user.UserName,
                     DisplayName = $"{user.Name} {user.LastName}",
                     ProfilePicture = ByteArrayToBitmapImage(user.ProfilePicture)
-                };
+            };
 
             }
             else
@@ -119,15 +119,15 @@ namespace PManager.ViewModel
 
         private BitmapImage ByteArrayToBitmapImage(byte[] byteArray)
         {
-            using (var stream = new MemoryStream(byteArray))
-            {
-                BitmapImage image = new BitmapImage();
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.StreamSource = stream;
-                image.EndInit();
-                return image;
-            }
+            MemoryStream ms = new MemoryStream(byteArray);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = ms;
+            image.CacheOption = BitmapCacheOption.OnLoad;
+            image.EndInit();
+            ms.Close();
+
+            return image;
         }
 
     }
