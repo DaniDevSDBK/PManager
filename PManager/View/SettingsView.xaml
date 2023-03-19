@@ -80,12 +80,31 @@
                          StrokeThickness="1">
 
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding CurrentUserAccount.ProfilePicture}"/>
+                        <ImageBrush ImageSource="{Binding CurrentUserAccountCopy.ProfilePicture}"/>
                     </Ellipse.Fill>
 
                 </Ellipse>
 
-                <TextBox Grid.Row="1"
+                <Border CornerRadius="25"
+                        Grid.Row="5"
+                        Grid.Column="1">
+
+                    <Button x:Name="btnChangeProfilePicture"
+                        BorderThickness="0"
+                        Content="Update Picture"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        FontWeight="Bold"
+                        FontSize="17"
+                        Height="Auto"
+                        Width="Auto"
+                        Command="{Binding UpdateProfilePicture}"
+                        Style="{StaticResource UpdateButtonStyle}"/>
+
+                </Border>
+
+                <TextBox x:Name="txtBUserName"
+                         Grid.Row="1"
                          Grid.Column="2"
                          Margin="5,50,5,5"
                          Height="40"
@@ -95,7 +114,8 @@
                          HorizontalContentAlignment="Left"
                          VerticalAlignment="Top"
                          VerticalContentAlignment="Bottom"
-                         Text="{Binding CurrentUserAccount.UserName}"
+                         ToolTip="Change Your Current User Name"
+                         Text="{Binding CurrentUserAccountCopy.UserName}"
                          Style="{StaticResource SingleLineTextBox}"/>
                 
                 <TextBox Grid.Row="3"
@@ -108,10 +128,11 @@
                          Foreground="LightCyan"
                          HorizontalContentAlignment="Left"
                          VerticalAlignment="Top"
+                         ToolTip="Change Your Current Email"
                          VerticalContentAlignment="Bottom"
-                         Text="{Binding CurrentUserAccount.Email}"
+                         Text="{Binding CurrentUserAccountCopy.Email}"
                          Style="{StaticResource SingleLineTextBox}"/>
-                
+
                 <TextBox Grid.Row="5"
                          Grid.Column="2"
                          Margin="5,50,5,5"
@@ -123,13 +144,73 @@
                          HorizontalContentAlignment="Left"
                          VerticalAlignment="Top"
                          VerticalContentAlignment="Bottom"
+                         ToolTip="Write Your New Password or RigthClick to Random Generator"
                          Text="New Password"
+                         Style="{StaticResource SingleLineTextBox}">
+
+                    <TextBox.ContextMenu>
+
+                        <ContextMenu Background="#2B2B2B" Style="{StaticResource ContextMenuStyle}">
+
+                            <MenuItem Background="#2B2B2B" Header="Testing Context Menu" Foreground="LightCyan"></MenuItem>
+
+                        </ContextMenu>
+
+                    </TextBox.ContextMenu> 
+                        
+                </TextBox>
+
+                <TextBox Grid.Row="7"
+                         Grid.Column="2"
+                         Margin="5,50,5,5"
+                         Height="40"
+                         FontSize="18"
+                         Width="Auto"
+                         Grid.ColumnSpan="2"
+                         Foreground="Gray"
+                         HorizontalContentAlignment="Left"
+                         VerticalAlignment="Top"
+                         VerticalContentAlignment="Bottom"
+                         Text="Confirm New Password"
                          Style="{StaticResource SingleLineTextBox}"/>
+
+                <Border CornerRadius="25"
+                        Grid.Row="9"
+                        Grid.Column="4">
+
+                    <Button x:Name="btnApplyChanges"
+                        BorderThickness="0"
+                        Content="Apply Changes"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        FontWeight="Bold"
+                        Margin="10"
+                        FontSize="12"
+                        ToolTip="Save New Profile Changes"
+                        Height="Auto"
+                        Width="Auto"
+                        Command="{Binding UpdateUserData}"
+                        Style="{StaticResource UpdateButtonStyle}"/>
+
+                </Border>
+
+                <Label Grid.Row="9"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="4"
+                       Margin="5,50,5,5"
+                       Height="40"
+                       Content="{Binding ErrorLabelMessagge}"
+                       FontSize="18"
+                       Width="Auto"
+                       Foreground="Red"
+                       HorizontalContentAlignment="Center"
+                       VerticalAlignment="Top"
+                       VerticalContentAlignment="Bottom"/>
 
             </Grid>
             
         </Border>
         
-            
     </Grid>
+    
 </UserControl>

@@ -40,7 +40,20 @@ namespace PManager.Repositorios
 
         public void Edit(UserModel userModel)
         {
-            throw new NotImplementedException();
+
+            using (var connection = GetConecction())
+            using (var command = new MySqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "UPDATE USER_ SET NOMBRE = @name, EMAIL = @email, user_profilePicture = @profile_picture WHERE dni = @id";
+                command.Parameters.AddWithValue("@name", userModel.Name);
+                command.Parameters.AddWithValue("@email", userModel.Email);
+                command.Parameters.AddWithValue("@profile_picture", userModel.ProfilePicture);
+                command.Parameters.AddWithValue("@id", userModel.Id);
+                command.ExecuteNonQuery();
+            }
+
         }
 
         public IEnumerable<UserModel> GetByAll()

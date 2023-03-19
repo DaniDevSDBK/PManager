@@ -24,7 +24,7 @@
 
         <Button Grid.Column="0"
                 Margin="30,30,30,30"
-                Style="{StaticResource calcButtonStyle}"/>
+                Style="{StaticResource btnStyle}"/>
     </Grid>
     
 </UserControl>
