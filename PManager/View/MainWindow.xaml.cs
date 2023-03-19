@@ -27,12 +27,17 @@ namespace PManager
 
         private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)=> DragMove();
 
-        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)=> this.Close();
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)=> App.Current.Shutdown();
+
+        private void btnMinimizedWindow_Click(object sender, RoutedEventArgs e)=> this.WindowState = WindowState.Minimized;
+
+        private void btnSingOut_Click(object sender, RoutedEventArgs e) => this.Visibility = Visibility.Hidden;
 
         private void btnMaximizedWindow_Click(object sender, RoutedEventArgs e)
         {
 
-           if(!this.WindowState.Equals(WindowState.Maximized)) {
+            if (!this.WindowState.Equals(WindowState.Maximized))
+            {
 
                 this.WindowState = WindowState.Maximized;
             }
@@ -42,8 +47,5 @@ namespace PManager
             }
         }
 
-        private void btnMinimizedWindow_Click(object sender, RoutedEventArgs e)=> this.WindowState = WindowState.Minimized;
-
-        private void btnSingOut_Click(object sender, RoutedEventArgs e) => this.Visibility = Visibility.Hidden;
     }
 }
