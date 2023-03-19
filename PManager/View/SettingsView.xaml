@@ -37,7 +37,49 @@
             <ColumnDefinition Width="10"/>
 
         </Grid.ColumnDefinitions>
-        
+
+        <Border CornerRadius="25" Grid.Column="1" Grid.Row="1" Background="WhiteSmoke">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <Ellipse Height="150"
+                         Width="150"
+                         Stroke="lightblue"
+                         Grid.Row="0"
+                         Grid.RowSpan="2"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         StrokeThickness="1">
+
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding CurrentUserAccount.ProfilePicture}"/>
+                    </Ellipse.Fill>
+
+                </Ellipse>
+
+            </Grid>
+            
+        </Border>
         
             
     </Grid>

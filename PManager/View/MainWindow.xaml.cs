@@ -43,5 +43,7 @@ namespace PManager
         }
 
         private void btnMinimizedWindow_Click(object sender, RoutedEventArgs e)=> this.WindowState = WindowState.Minimized;
+
+        private void btnSingOut_Click(object sender, RoutedEventArgs e) => this.Visibility = Visibility.Hidden;
     }
 }

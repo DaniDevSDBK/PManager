@@ -188,7 +188,7 @@
                                 FlowDirection="RightToLeft"
                                 Background="Transparent"
                                 MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown">
-                        
+
                         <Button x:Name="btnCloseWindow"
                                 Margin="6,3,0,0"
                                 Style="{StaticResource controlButton}"
@@ -198,7 +198,7 @@
                             <fa:IconImage Icon="Close" Style="{StaticResource controlIcon}" Width="25" Height="14"/>
 
                         </Button>
-                        
+
                         <Button x:Name="btnMaximizedWindow"
                                 Margin="0,3,0,0"
                                 Style="{StaticResource controlButton}"
@@ -228,9 +228,9 @@
 
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            
+
                         </Grid.ColumnDefinitions>
-                        
+
                         <!--CurrentWindowTitle-->
                         <StackPanel Grid.Column="0"
                                     Orientation="Horizontal"
@@ -241,32 +241,44 @@
                             <TextBlock Text="{Binding CurrentWindowTittle}" Foreground="LightCyan" VerticalAlignment="Center" FontSize="18"/>
 
                         </StackPanel>
-                        
+
                         <!--CurrentUser-->
                         <StackPanel Grid.Column="1"
                                     Orientation="Horizontal"
                                     FlowDirection="RightToLeft"
-                                    Margin="0,0,10,0">
+                                    Margin="0,10,20,-11">
 
-                            <Label Width="30" Height="20" HorizontalContentAlignment="Center">
+                            <Button x:Name="btnSingOut" 
+                                    Width="50"
+                                    Height="40"
+                                    BorderThickness="0"
+                                    ToolTip="Close Session"
+                                    HorizontalContentAlignment="Center" 
+                                    Click="btnSingOut_Click">
 
-                                <Label.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="LogOut"/>
-                                    </ContextMenu>
-                                </Label.ContextMenu>
+                                <fa:IconBlock Icon="SignOut" Height="14" Width="34"/>
 
-                                <fa:IconImage Icon="ArrowDown" Foreground="LightCyan"/>
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="Foreground" Value="Red"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
 
-                            </Label>
+                            </Button>
 
-                            <TextBlock Text="{Binding CurrentUserAccount.DisplayName}" Foreground="LightCyan" VerticalAlignment="Center" FontSize="18"/>
+                            <TextBlock Text="{Binding CurrentUserAccount.DisplayName}" Foreground="LightCyan" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
 
                             <Ellipse Height="35" 
                                      Width="35"
                                      Stroke="lightblue"
                                      StrokeThickness="1"
-                                     Margin="10,0,10,0">
+                                     Margin="15,0,5,0">
 
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="{Binding CurrentUserAccount.ProfilePicture}"/>
@@ -277,12 +289,12 @@
                         </StackPanel>
 
                     </Grid>
-                    
+
                     <!--Content Section-->
                     <ContentControl Content="{Binding CurrentChildView}"
                                     Grid.Row="2"
                                     Margin="25,25,10,25"/>
-                    
+
 
                 </Grid>
 

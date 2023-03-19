@@ -16,6 +16,11 @@ namespace PManager
     {
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
+            sessionClose();
+        }
+
+        private void sessionClose()
+        {
             var loginView = new LogIn();
             loginView.Show();
             loginView.IsVisibleChanged += (s, ev) =>
@@ -24,7 +29,15 @@ namespace PManager
                 {
                     var mainView = new MainWindow();
                     mainView.Show();
+                    mainView.ResizeMode = ResizeMode.CanResize;
                     loginView.Close();
+                    mainView.IsVisibleChanged += (s, ev) =>
+                    {
+                        if (!mainView.IsVisible && mainView.IsLoaded)
+                        {
+                            sessionClose();
+                        }
+                    };
                 }
             };
         }

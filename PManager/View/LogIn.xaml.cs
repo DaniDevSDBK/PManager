@@ -38,9 +38,6 @@ namespace PManager.View
             WindowState = WindowState.Minimized;
         }
 
-        private void Cerrar_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+        private void Cerrar_Click(object sender, RoutedEventArgs e) => App.Current.Shutdown();
     }
 }
