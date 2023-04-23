@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -21,8 +23,8 @@ namespace PManager.Repositorios
         {
             if (!CheckApp(appModel.AppName))
             {
-                using (var connection = GetConecction())
-                using (var command = new MySqlCommand())
+                using (var connection = new SQLiteConnection(GetConecction()))
+                using (var command = new SQLiteCommand())
                 {
                     //Insert App Name
                     connection.Open();
@@ -34,20 +36,20 @@ namespace PManager.Repositorios
                     //Insert User Name and App Password
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "INSERT INTO USER_APP VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "', " + GetAppByName(appModel.AppName.ToUpper()).AppId + ",'" +appModel.UserAppName+"','"+appModel.AppPassword+"')";
+                    command.CommandText = "INSERT INTO UserApp VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "', " + GetAppByName(appModel.AppName.ToUpper()).AppId + ",'" +appModel.UserAppName+"','"+appModel.AppPassword+"')";
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
             }
             else
             {
-                using (var connection = GetConecction())
-                using (var command = new MySqlCommand())
+                using (var connection = new SQLiteConnection(GetConecction()))
+                using (var command = new SQLiteCommand())
                 {
                     //Insert User Name and App Password
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "INSERT INTO USER_APP VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "', " + GetAppByName(appModel.AppName.ToUpper()).AppId + ",'" + appModel.UserAppName + "','" + appModel.AppPassword + "')";
+                    command.CommandText = "INSERT INTO UserApp VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "', " + GetAppByName(appModel.AppName.ToUpper()).AppId + ",'" + appModel.UserAppName + "','" + appModel.AppPassword + "')";
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
@@ -75,8 +77,8 @@ namespace PManager.Repositorios
         {
             List<string> appName = new List<string>();
 
-            using (var connection = GetConecction())
-            using (var command = new MySqlCommand())
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
             {
                 connection.Open();
                 command.Connection = connection;
@@ -105,13 +107,13 @@ namespace PManager.Repositorios
         {
             AppModel app = null;
 
-            using (var connection = GetConecction())
-            using (var command = new MySqlCommand())
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
             {
                 connection.Open();
                 command.Connection = connection;
                 command.CommandText = "SELECT * FROM APP WHERE NAME =@APPNAME";
-                command.Parameters.Add("@APPNAME", MySqlDbType.String).Value = name;
+                command.Parameters.Add("@APPNAME", DbType.String).Value = name;
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
@@ -133,12 +135,12 @@ namespace PManager.Repositorios
             List<AppModel> appList = new List<AppModel>();
             AppModel app = null;
 
-            using (var connection = GetConecction())
-            using (var command = new MySqlCommand())
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM APP JOIN USER_APP USING(IDAPP)";
+                command.CommandText = "SELECT * FROM APP JOIN UserApp USING(IDAPP)";
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -151,8 +153,8 @@ namespace PManager.Repositorios
                             AppPassword = reader[4].ToString(),
                         };
 
-                        using (var connection2 = GetConecction())
-                        using (var command2 = new MySqlCommand())
+                        using (var connection2 = new SQLiteConnection(GetConecction()))
+                        using (var command2 = new SQLiteCommand())
                         {
                             connection2.Open();
                             command2.Connection = connection2;
@@ -186,12 +188,12 @@ namespace PManager.Repositorios
 
             ContentViewModel _content = null;
 
-            using (var connection = GetConecction())
-            using (var command = new MySqlCommand())
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT USER_APP_NAME, USER_APP_PWD FROM APP JOIN USER_APP USING(IDAPP) WHERE NAME='"+_appName+"'";
+                command.CommandText = "SELECT userAppName, userAppPassword FROM APP JOIN UserApp USING(IDAPP) WHERE NAME='" + _appName+"'";
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())

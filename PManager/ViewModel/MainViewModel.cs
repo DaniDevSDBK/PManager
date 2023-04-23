@@ -26,14 +26,9 @@ namespace PManager.ViewModel
         private UserAccountModel currentUserAccount;
         private BaseViewModel currentChildView;
         private string _currentWindowTittle;
-        private bool _isLoginVisible = false;
         private IconChar _iconView;
         private UIRepositable userRepo;
-        private readonly IMessenger _messenger;
-        public void ShowLoginView()
-        {
-            _messenger.Send(new ShowLogInViewMessage { Show = true });
-        }
+
         public UserAccountModel CurrentUserAccount { get { return currentUserAccount; } set { currentUserAccount = value; OnPropertyChanged(nameof(CurrentUserAccount)); } }
 
         public string CurrentWindowTittle { get => _currentWindowTittle; set { _currentWindowTittle = value; OnPropertyChanged(nameof(CurrentWindowTittle)); } }
@@ -108,7 +103,7 @@ namespace PManager.ViewModel
                     DisplayName = $"{user.Name} {user.LastName}",
                     Email= user.Email,
                     ProfilePicture = ByteArrayToBitmapImage(user.ProfilePicture)
-            };
+                };
 
             }
             else

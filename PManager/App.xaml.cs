@@ -21,6 +21,7 @@ namespace PManager
 
         private void sessionClose()
         {
+
             var loginView = new LogIn();
             loginView.Show();
             loginView.IsVisibleChanged += (s, ev) =>

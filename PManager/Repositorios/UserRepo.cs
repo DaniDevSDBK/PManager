@@ -2,6 +2,8 @@
 using PManager.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PManager.Repositorios
 {
@@ -24,14 +27,15 @@ namespace PManager.Repositorios
         {
             bool validUser= false;
 
-            using (var connection = GetConecction())
-            using (var command = new MySqlCommand())
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
             {
+                connection.Close();
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM USER_ WHERE NOMBRE =@USERNAME AND USER_PASSWORD =@PASSWORD";
-                command.Parameters.Add("@USERNAME", MySqlDbType.String).Value = credential.UserName;
-                command.Parameters.Add("@PASSWORD", MySqlDbType.VarString).Value = credential.Password;
+                command.CommandText = "SELECT * FROM USER WHERE NAME =@USERNAME AND PASSWORD =@PASSWORD";
+                command.Parameters.Add(new SQLiteParameter("@USERNAME", DbType.String) { Value = credential.UserName });
+                command.Parameters.Add(new SQLiteParameter("@PASSWORD", DbType.String) { Value = credential.Password });
                 validUser = command.ExecuteScalar() == null ? false : true;
             }
 
@@ -41,12 +45,12 @@ namespace PManager.Repositorios
         public void Edit(UserModel userModel)
         {
 
-            using (var connection = GetConecction())
-            using (var command = new MySqlCommand())
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "UPDATE USER_ SET NOMBRE = @name, EMAIL = @email, user_profilePicture = @profile_picture WHERE dni = @id";
+                command.CommandText = "UPDATE USER SET profile_picture = @profile_picture WHERE idUser = @id";
                 command.Parameters.AddWithValue("@name", userModel.Name);
                 command.Parameters.AddWithValue("@email", userModel.Email);
                 command.Parameters.AddWithValue("@profile_picture", userModel.ProfilePicture);
@@ -70,22 +74,22 @@ namespace PManager.Repositorios
         {
             UserModel user = null;
 
-            using (var connection = GetConecction())
-            using (var command = new MySqlCommand())
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM USER_ WHERE NOMBRE =@USERNAME";
-                command.Parameters.Add("@USERNAME", MySqlDbType.String).Value = username;
+                command.CommandText = "SELECT * FROM USER WHERE NAME =@USERNAME";
+                command.Parameters.Add("@USERNAME", DbType.String).Value = username;
                 ImageBrush imgBrush = new ImageBrush();
 
-                using(var reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
-                    if(reader.Read())
+                    if (reader.Read())
                     {
                         user = new UserModel()
                         {
-                            Id = reader[0].ToString(),
+                            Id = Int32.Parse(reader[0].ToString()),
                             UserName = reader[1].ToString(),
                             Name = reader[1].ToString(),
                             Email = reader[2].ToString(),

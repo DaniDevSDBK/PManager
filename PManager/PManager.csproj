@@ -8,11 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\pm.db" />
     <None Remove="Img\UserProfileDefaultPicture.png" />
     <None Remove="Repositorios\jog4jxtq.xwr~" />
+    <None Remove="Repositorios\pm.db" />
     <None Remove="View\sbk2bs1n.5uq~" />
     <None Remove="View\voeuf1ir.jxf~" />
     <None Remove="View\xcqfcmyw.0ql~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\pm.db">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +28,7 @@
     <PackageReference Include="FontAwesome.Sharp" Version="6.2.1" />
     <PackageReference Include="MySql.Data" Version="8.0.31" />
     <PackageReference Include="MySqlConnector" Version="2.2.2" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.117" />
   </ItemGroup>
 
   <ItemGroup>

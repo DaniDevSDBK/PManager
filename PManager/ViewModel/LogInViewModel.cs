@@ -1,5 +1,6 @@
 ﻿using PManager.Model;
 using PManager.Repositorios;
+using PManager.View.NavigationService.NavigationService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,12 @@ namespace PManager.ViewModel
 {
     public class LogInViewModel : BaseViewModel
     {
-        private string userName;
         private SecureString password;
+        private string userName;
         private string errorMessage;
         private bool isViewVisible = true;
         private UIRepositable uRepos;
+        private NavigationService nService;
 
         public string UserName { get => userName; set { userName = value; OnPropertyChanged(nameof(userName)); } }
         public SecureString Password { get => password; set { password = value; OnPropertyChanged(nameof(password));} }
@@ -30,13 +32,15 @@ namespace PManager.ViewModel
         public ICommand RecoverPasswordCmd { get;}
         public ICommand RestorePasswordCmd { get;}
         public ICommand ShowPasswordCmd { get;}
-        public ICommand LogOutCommand { get; }
+        public ICommand RegisterCommand { get; }
 
         //
         public LogInViewModel()
         {
             uRepos = new UserRepo();
+            nService= new NavigationService();
             LogInCmd = new RelayCommand(ExecLoginCmd, CanExecLogInCmd);
+            RegisterCommand = new RelayCommand(ExecRegisterCommand);
             RecoverPasswordCmd = new RelayCommand(p=>ExecRecoverPassword("",""));
         }
 
@@ -75,6 +79,11 @@ namespace PManager.ViewModel
                 ErrorMessage = "*Invalid username o password";
             }
 
+        }
+
+        private void ExecRegisterCommand(object obj)
+        {
+            nService.ShowRegisterView();
         }
 
     }

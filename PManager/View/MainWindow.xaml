@@ -53,105 +53,112 @@
             <Grid.ColumnDefinitions>
 
                 <!--NavigationMenuDef-->
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="Auto"/>
 
                 <!--ContentSectionDef-->
                 <ColumnDefinition Width="*"/>
 
             </Grid.ColumnDefinitions>
 
-            <!--Navigation Menu-->
-            <Border CornerRadius="20,0,0,20" Grid.Column="0">
+            <Expander Grid.Column="0" Margin="0" IsExpanded="True" ExpandDirection="Down" Style="{StaticResource ExpanderMenu}">
 
-                <Border.Background>
 
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <!--Navigation Menu-->
+                <Border CornerRadius="20,0,0,20" Grid.Column="0">
 
-                        <GradientStop Color="{StaticResource primaryBackColor3}" Offset="0"/>
-                        <GradientStop Color="{StaticResource primaryBackColor3}" Offset="1"/>
+                    <Border.Background>
 
-                    </LinearGradientBrush>
+                        <LinearGradientBrush>
 
-                </Border.Background>
+                            <GradientStop Color="{StaticResource primaryBackColor3}" Offset="0"/>
+                            <GradientStop Color="{StaticResource primaryBackColor3}" Offset="1"/>
 
-                <StackPanel>
+                        </LinearGradientBrush>
+                        
+                    </Border.Background>
 
-                    <!--Logo-->
-                    <StackPanel Orientation="Horizontal"
-                                Height="35"
-                                Margin="15,25,0,40">
-                        <Image Source="/Img/imgCandado.jpg"
-                               Height="30"/>
+                    <StackPanel>
+                        <!--Logo-->
+                        <StackPanel Orientation="Horizontal"
+                                    Height="35"
+                                    Margin="15,25,0,40">
+                            <Image Source="/Img/imgCandado.jpg"
+                                   Height="30"/>
 
-                        <TextBlock Text="Password Manager"
-                                   Foreground="{StaticResource BorderColor1}"
-                                   FontSize="20"
-                                   FontFamily="Arial"
-                                   FontWeight="Medium"
-                                   VerticalAlignment="Center"
-                                   Margin="10,0,0,0"/>
+                            <TextBlock Text="Password Manager"
+                                       Foreground="{StaticResource BorderColor1}"
+                                       FontSize="20"
+                                       FontFamily="Arial"
+                                       FontWeight="Medium"
+                                       VerticalAlignment="Center"
+                                       Margin="10,0,20,0"/>
+
+                        </StackPanel>
+
+                        <!--MenuButtons-->
+                        <!--btnHome-->
+                        <RadioButton x:Name="btnHome" 
+                                     IsChecked="True"
+                                     Style="{StaticResource menuButton}"
+                                     Tag="{StaticResource BorderColor1}"
+                                     Command="{Binding ShowHomeViewCommand}">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <fa:IconImage Icon="Home" Style="{StaticResource btnIcon}"/>
+                                <TextBlock Text="Home" Style="{StaticResource btnText}"/>
+
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!--btnNewAppForm-->
+                        <RadioButton x:Name="btnHome1"
+                                     Style="{StaticResource menuButton}"
+                                     Tag="{StaticResource BorderColor1}"
+                                     Command="{Binding ShowAddAppViewCommand}">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <fa:IconImage Icon="AppStore" Style="{StaticResource btnIcon}"/>
+                                <TextBlock Text="New App" Style="{StaticResource btnText}"/>
+
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!--btnAppList-->
+                        <RadioButton x:Name="btnHome2" 
+                                     Style="{StaticResource menuButton}"
+                                     Tag="{StaticResource BorderColor1}"
+                                     Command="{Binding ShowMyAppListViewCommand}">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <fa:IconImage Icon="List" Style="{StaticResource btnIcon}"/>
+                                <TextBlock Text="My List" Style="{StaticResource btnText}"/>
+
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!--btnSettings-->
+                        <RadioButton x:Name="btnHome3" 
+                                     Style="{StaticResource menuButton}"
+                                     Tag="{StaticResource BorderColor1}"
+                                     Command="{Binding ShowSettingsViewCommand}">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <fa:IconImage Icon="Tools" Style="{StaticResource btnIcon}"/>
+                                <TextBlock Text="Settings" Style="{StaticResource btnText}"/>
+
+                            </StackPanel>
+                        </RadioButton>
 
                     </StackPanel>
 
-                    <!--MenuButtons-->
-                    <!--btnHome-->
-                    <RadioButton x:Name="btnHome" 
-                                 Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource BorderColor1}"
-                                 Command="{Binding ShowHomeViewCommand}">
+                </Border>
 
-                        <StackPanel Orientation="Horizontal">
-
-                            <fa:IconImage Icon="Home" Style="{StaticResource btnIcon}"/>
-                            <TextBlock Text="Home" Style="{StaticResource btnText}"/>
-
-                        </StackPanel>
-                    </RadioButton>
-
-                    <!--btnNewAppForm-->
-                    <RadioButton x:Name="btnHome1"
-                                 Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource BorderColor1}"
-                                 Command="{Binding ShowAddAppViewCommand}">
-
-                        <StackPanel Orientation="Horizontal">
-
-                            <fa:IconImage Icon="AppStore" Style="{StaticResource btnIcon}"/>
-                            <TextBlock Text="New App" Style="{StaticResource btnText}"/>
-
-                        </StackPanel>
-                    </RadioButton>
-
-                    <!--btnAppList-->
-                    <RadioButton x:Name="btnHome2" 
-                                 Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource BorderColor1}"
-                                 Command="{Binding ShowMyAppListViewCommand}">
-
-                        <StackPanel Orientation="Horizontal">
-
-                            <fa:IconImage Icon="List" Style="{StaticResource btnIcon}"/>
-                            <TextBlock Text="My List" Style="{StaticResource btnText}"/>
-
-                        </StackPanel>
-                    </RadioButton>
-
-                    <!--btnSettings-->
-                    <RadioButton x:Name="btnHome3" 
-                                 Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource BorderColor1}"
-                                 Command="{Binding ShowSettingsViewCommand}">
-
-                        <StackPanel Orientation="Horizontal">
-
-                            <fa:IconImage Icon="Tools" Style="{StaticResource btnIcon}"/>
-                            <TextBlock Text="Settings" Style="{StaticResource btnText}"/>
-
-                        </StackPanel>
-                    </RadioButton>
-
-                </StackPanel>
-            </Border>
+            </Expander>
+            
 
             <!--Content Menu-->
             <Border CornerRadius="0,20,20,0" Grid.Column="1">

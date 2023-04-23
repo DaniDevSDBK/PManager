@@ -49,7 +49,6 @@ namespace PManager.ViewModel
                 UserName = mainWindowViewModel.CurrentUserAccount.UserName,
                 Email= mainWindowViewModel.CurrentUserAccount.Email,
                 ProfilePicture = mainWindowViewModel.CurrentUserAccount.ProfilePicture,
-
             };
 
         }
@@ -69,22 +68,19 @@ namespace PManager.ViewModel
 
                 this._currentUserCopy = new UserModel()
                 {
-                    Id = "04655612K",
+                    Id = 1,
                     Name = CurrentUserAccountCopy.UserName,
                     UserName = CurrentUserAccountCopy.UserName,
-                    Email = CurrentUserAccountCopy.Email,
+                    Email = CurrentUserAccountCopy.Email, 
                     ProfilePicture = imageData,
-
                 };
             }
         }
 
         private void ExecUserDataUpdate(object obj)
         {
-
             _userRepo.Edit(this._currentUserCopy);  
             ErrorLabelMessagge = "Todo Bien";
-
         }
 
         private BitmapImage ByteArrayToBitmapImage(byte[] byteArray)
