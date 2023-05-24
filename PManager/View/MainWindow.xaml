@@ -191,6 +191,7 @@
                     <!--Control Bar-->
                     <StackPanel x:Name="pnlControlBar"
                                 Grid.Row="0"
+                                Margin="0,0,0,0"
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft"
                                 Background="Transparent"
@@ -202,7 +203,7 @@
                                 Tag="{StaticResource closeColor}"
                                 Click="btnCloseWindow_Click" Height="24" Width="30">
 
-                            <fa:IconImage Icon="Close" Style="{StaticResource controlIcon}" Width="25" Height="14"/>
+                            <fa:IconImage Icon="Close" Style="{StaticResource controlIcon}" Width="25" Height="14" Foreground="Red"/>
 
                         </Button>
 
@@ -212,7 +213,7 @@
                                 Tag="{StaticResource BorderColor1}"
                                 Click="btnMaximizedWindow_Click" Height="24" Width="30">
 
-                            <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlIcon}" Width="15" Height="15"/>
+                            <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlIcon}" Width="15" Height="15" Foreground="LightGreen"/>
 
                         </Button>
 
@@ -222,14 +223,14 @@
                                 Tag="{StaticResource BorderColor1}"
                                 Click="btnMinimizedWindow_Click"  Height="24" Width="30">
 
-                            <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlIcon}" Width="15" Height="15"/>
+                            <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlIcon}" Width="15" Height="15" Foreground="WhiteSmoke"/>
 
                         </Button>
 
 
                     </StackPanel>
                     <!--User Bar-->
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1" Background="BlueViolet">
 
                         <Grid.ColumnDefinitions>
 
@@ -253,7 +254,7 @@
                         <StackPanel Grid.Column="1"
                                     Orientation="Horizontal"
                                     FlowDirection="RightToLeft"
-                                    Margin="0,10,20,-11">
+                                    Margin="0,-10,20,-11">
 
                             <Button x:Name="btnSingOut" 
                                     Width="50"
@@ -285,14 +286,11 @@
                                      Width="35"
                                      Stroke="lightblue"
                                      StrokeThickness="1"
+                                     FlowDirection ="LeftToRight"
                                      Margin="15,0,5,0">
 
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding CurrentUserAccount.CurrentUser.ProfilePicture}">
-                                        <ImageBrush.Transform>
-                                            <ScaleTransform ScaleX="-1" CenterX="0.5"/>
-                                        </ImageBrush.Transform>
-                                   </ImageBrush>
+                                    <ImageBrush ImageSource="{Binding CurrentUserAccount.CurrentUser.ProfilePicture}"/>
                                 </Ellipse.Fill>
 
                             </Ellipse>
@@ -304,7 +302,7 @@
                     <!--Content Section-->
                     <ContentControl Content="{Binding CurrentChildView}"
                                     Grid.Row="2"
-                                    Margin="25,25,10,25"/>
+                                    Margin="10,30,10,25"/>
 
 
                 </Grid>

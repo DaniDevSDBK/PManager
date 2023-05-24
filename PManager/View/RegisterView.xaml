@@ -28,8 +28,8 @@
 
         <Border.Background>
             <LinearGradientBrush>
-                <GradientStop Color="DarkTurquoise" Offset="0"/>
-                <GradientStop Color="DarkGray" Offset="0.5"/>
+                <GradientStop Color="DarkTurquoise" Offset="1"/>
+                <GradientStop Color="DarkGray" Offset="0.8"/>
                 <GradientStop Color="DarkBlue" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
