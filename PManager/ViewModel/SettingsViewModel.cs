@@ -3,6 +3,7 @@ using PManager.Model;
 using PManager.Repositorios;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,14 +17,13 @@ namespace PManager.ViewModel
 {
     public class SettingsViewModel:BaseViewModel
     {
-
-        private UserAccountModel _currentUserAccountCopy;
+        private UserContext _currentUserAccount = UserContext.Instance;
         private UserModel _currentUserCopy;
         private UserRepo _userRepo = new UserRepo();
 
         public string ErrorLabelMessagge { get; set; }
 
-        public UserAccountModel CurrentUserAccountCopy { get { return _currentUserAccountCopy; } set { this._currentUserAccountCopy = value;} }
+        public UserContext CurrentUserAccount { get { return _currentUserAccount; } set { this._currentUserAccount = value;} }
 
         //Commands
         public ICommand UpdateProfilePicture { get; }
@@ -32,24 +32,8 @@ namespace PManager.ViewModel
         public SettingsViewModel()
         {
 
-            LoadParentInfo();
-
             UpdateProfilePicture = new RelayCommand(ExecUpdateProfilePicture);
             UpdateUserData = new RelayCommand(ExecUserDataUpdate);
-
-        }
-        public void LoadParentInfo()
-        {
-
-            var mainWindow = (MainWindow)System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
-            var mainWindowViewModel = (MainViewModel)mainWindow.DataContext;
-
-            _currentUserAccountCopy = new UserAccountModel()
-            {
-                UserName = mainWindowViewModel.CurrentUserAccount.UserName,
-                Email= mainWindowViewModel.CurrentUserAccount.Email,
-                ProfilePicture = mainWindowViewModel.CurrentUserAccount.ProfilePicture,
-            };
 
         }
 
@@ -64,23 +48,37 @@ namespace PManager.ViewModel
                 // Lee la imagen seleccionada en un array de bytes
                 byte[] imageData = File.ReadAllBytes(openFileDialog.FileName);
 
-                CurrentUserAccountCopy.ProfilePicture = ByteArrayToBitmapImage(imageData);
+                CurrentUserAccount.CurrentUser.ProfilePicture = ByteArrayToBitmapImage(imageData);
 
-                this._currentUserCopy = new UserModel()
-                {
-                    Id = 1,
-                    Name = CurrentUserAccountCopy.UserName,
-                    UserName = CurrentUserAccountCopy.UserName,
-                    Email = CurrentUserAccountCopy.Email, 
-                    ProfilePicture = imageData,
-                };
             }
         }
 
-        private void ExecUserDataUpdate(object obj)
+        private async void ExecUserDataUpdate(object obj)
         {
-            _userRepo.Edit(this._currentUserCopy);  
-            ErrorLabelMessagge = "Todo Bien";
+
+            try
+            {
+                this._currentUserCopy = new UserModel()
+                {
+                    Id = 1,
+                    Name = CurrentUserAccount.CurrentUser.UserName,
+                    UserName = CurrentUserAccount.CurrentUser.UserName,
+                    Email = CurrentUserAccount.CurrentUser.Email,
+                    ProfilePicture = BitmapImageToByteArray(CurrentUserAccount.CurrentUser.ProfilePicture),
+                };
+
+                await Task.Run(() =>
+                {
+                    _userRepo.Edit(this._currentUserCopy);
+                });
+
+                ErrorLabelMessagge = "Perfil Actualizado Correctamente.";
+            }
+            catch
+            {
+                ErrorLabelMessagge = "No se pudo actualizar el perfil. Por favor, inténtelo de nuevo más tarde.";
+            }
+            
         }
 
         private BitmapImage ByteArrayToBitmapImage(byte[] byteArray)
@@ -94,6 +92,19 @@ namespace PManager.ViewModel
             ms.Close();
 
             return image;
+        }
+
+        private byte[] BitmapImageToByteArray(BitmapImage bitmapImage)
+        {
+            byte[] byteArray;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                BitmapEncoder encoder = new BmpBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                encoder.Save(ms);
+                byteArray = ms.ToArray();
+            }
+            return byteArray;
         }
 
     }

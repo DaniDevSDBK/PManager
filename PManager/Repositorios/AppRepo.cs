@@ -49,7 +49,7 @@ namespace PManager.Repositorios
                     //Insert User Name and App Password
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "INSERT INTO UserApp VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "', " + GetAppByName(appModel.AppName.ToUpper()).AppId + ",'" + appModel.UserAppName + "','" + appModel.AppPassword + "')";
+                    command.CommandText = "INSERT INTO UserApp VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "','" + appModel.UserAppName + "','" + appModel.AppPassword + "')";
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
@@ -112,7 +112,7 @@ namespace PManager.Repositorios
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM APP WHERE NAME =@APPNAME";
+                command.CommandText = "SELECT * FROM APP WHERE NAME ='@APPNAME'";
                 command.Parameters.Add("@APPNAME", DbType.String).Value = name;
                 using (var reader = command.ExecuteReader())
                 {

@@ -1,35 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using FontAwesome.Sharp;
-using Microsoft.VisualBasic.ApplicationServices;
-using MySqlConnector;
-using Org.BouncyCastle.Utilities;
+﻿using FontAwesome.Sharp;
 using PManager.Model;
 using PManager.Repositorios;
+using System.IO;
+using System.Threading;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace PManager.ViewModel
 {
-    public class MainViewModel:BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
         private UserAccountModel currentUserAccount;
         private BaseViewModel currentChildView;
         private string _currentWindowTittle;
         private IconChar _iconView;
         private UIRepositable userRepo;
+        private UserContext _currentUser = UserContext.Instance;
 
-        public UserAccountModel CurrentUserAccount { get { return currentUserAccount; } set { currentUserAccount = value; OnPropertyChanged(nameof(CurrentUserAccount)); } }
+        public UserContext CurrentUserAccount { get { return _currentUser; } set { _currentUser = value; OnPropertyChanged(nameof(CurrentUserAccount)); } }
 
         public string CurrentWindowTittle { get => _currentWindowTittle; set { _currentWindowTittle = value; OnPropertyChanged(nameof(CurrentWindowTittle)); } }
         public IconChar IconView { get => _iconView; set { _iconView = value; OnPropertyChanged(nameof(IconView)); } }
@@ -44,10 +33,9 @@ namespace PManager.ViewModel
         public ICommand ShowSettingsViewCommand { get; }
         public ICommand ShowLogInViewCommand { get; }
 
-        public MainViewModel() 
-        { 
+        public MainViewModel()
+        {
             userRepo = new UserRepo();
-            
 
             //Initialize
             ShowHomeViewCommand = new RelayCommand(ExecuteShowHomeViewCommand);
@@ -96,14 +84,16 @@ namespace PManager.ViewModel
 
             if (user != null)
             {
-    
-                CurrentUserAccount = new UserAccountModel()
+
+                var account = new UserAccountModel()
                 {
                     UserName = user.UserName,
                     DisplayName = $"{user.Name} {user.LastName}",
-                    Email= user.Email,
+                    Email = user.Email,
                     ProfilePicture = ByteArrayToBitmapImage(user.ProfilePicture)
                 };
+
+                _currentUser.CurrentUser = account;
 
             }
             else

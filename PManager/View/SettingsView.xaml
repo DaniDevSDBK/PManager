@@ -80,7 +80,7 @@
                          StrokeThickness="1">
 
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding CurrentUserAccountCopy.ProfilePicture}"/>
+                        <ImageBrush ImageSource="{Binding CurrentUserAccount.CurrentUser.ProfilePicture}"/>
                     </Ellipse.Fill>
 
                 </Ellipse>
@@ -115,7 +115,7 @@
                          VerticalAlignment="Top"
                          VerticalContentAlignment="Bottom"
                          ToolTip="Change Your Current User Name"
-                         Text="{Binding CurrentUserAccountCopy.UserName}"
+                         Text="{Binding CurrentUserAccount.CurrentUser.UserName}"
                          Style="{StaticResource SingleLineTextBox}"/>
                 
                 <TextBox Grid.Row="3"
@@ -130,7 +130,7 @@
                          VerticalAlignment="Top"
                          ToolTip="Change Your Current Email"
                          VerticalContentAlignment="Bottom"
-                         Text="{Binding CurrentUserAccountCopy.Email}"
+                         Text="{Binding CurrentUserAccount.CurrentUser.Email}"
                          Style="{StaticResource SingleLineTextBox}"/>
 
                 <TextBox Grid.Row="5"

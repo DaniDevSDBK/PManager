@@ -279,7 +279,7 @@
 
                             </Button>
 
-                            <TextBlock Text="{Binding CurrentUserAccount.DisplayName}" Foreground="LightCyan" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
+                            <TextBlock Text="{Binding CurrentUserAccount.CurrentUser.UserName}" Foreground="LightCyan" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="18"/>
 
                             <Ellipse Height="35" 
                                      Width="35"
@@ -288,7 +288,11 @@
                                      Margin="15,0,5,0">
 
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding CurrentUserAccount.ProfilePicture}"/>
+                                    <ImageBrush ImageSource="{Binding CurrentUserAccount.CurrentUser.ProfilePicture}">
+                                        <ImageBrush.Transform>
+                                            <ScaleTransform ScaleX="-1" CenterX="0.5"/>
+                                        </ImageBrush.Transform>
+                                   </ImageBrush>
                                 </Ellipse.Fill>
 
                             </Ellipse>

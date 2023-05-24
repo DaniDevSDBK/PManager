@@ -15,9 +15,23 @@ namespace PManager.Model
     public class UserAccountModel: INotifyPropertyChanged
     {
         private BitmapImage _profilePicture;
-        public String UserName { get; set; }
+        private String _username;
+        public string UserName
+        {
+            get { return _username; }
+            set
+            {
+                if (_username != value)
+                {
+                    _username = value;
+                    OnPropertyChanged(nameof(UserName));
+                }
+            }
+        }
         public String DisplayName { get; set; }
         public String Email { get; set; }
+
+        public String SessionToken { get; set; }
 
         public BitmapImage ProfilePicture
         {

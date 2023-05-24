@@ -22,7 +22,6 @@ namespace PManager.Repositorios
         {
 
             cadenaConexion = $"Data Source={@"C:\Users\Usuario\Desktop\PManagerFolder\PManager\PManager\Data\pm.db"};Version=3;";
-            ;
         }
 
         protected string GetConecction()=> cadenaConexion;

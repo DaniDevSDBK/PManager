@@ -5,10 +5,12 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Img\KeyVault.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Data\pm.db" />
+    <None Remove="Img\KeyVault.png" />
     <None Remove="Img\UserProfileDefaultPicture.png" />
     <None Remove="Repositorios\jog4jxtq.xwr~" />
     <None Remove="Repositorios\pm.db" />
@@ -21,6 +23,7 @@
     <Content Include="Data\pm.db">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
+    <Content Include="Img\KeyVault.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Img\KeyVault.png" />
     <Resource Include="Img\UserProfileDefaultPicture.png" />
   </ItemGroup>
 

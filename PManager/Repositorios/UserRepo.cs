@@ -50,7 +50,7 @@ namespace PManager.Repositorios
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "UPDATE USER SET profile_picture = @profile_picture WHERE idUser = @id";
+                command.CommandText = "UPDATE USER SET name = @name, email = @email, profile_picture = @profile_picture WHERE idUser = @id";
                 command.Parameters.AddWithValue("@name", userModel.Name);
                 command.Parameters.AddWithValue("@email", userModel.Email);
                 command.Parameters.AddWithValue("@profile_picture", userModel.ProfilePicture);
