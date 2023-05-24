@@ -17,6 +17,6 @@ namespace PManager.Model
         UserModel GetById(int id);
         UserModel GetByUsername(string username);
         IEnumerable<UserModel> GetByAll();
-
+        bool UserExists(string email);
     }
 }

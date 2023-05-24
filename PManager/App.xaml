@@ -1,8 +1,7 @@
 ﻿<Application x:Class="PManager.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:PManager"
-             Startup="ApplicationStart">
+             xmlns:local="clr-namespace:PManager">
     
     <Application.Resources>
 

@@ -181,7 +181,7 @@
                         <RowDefinition Height="25"/>
 
                         <!--Cabecera-->
-                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="50"/>
 
                         <!--Vista del Contenido-->
                         <RowDefinition Height="*"/>

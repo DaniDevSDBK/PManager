@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using PManager.View;
+using PManager.ViewModel;
 
 namespace PManager
 {
@@ -14,8 +15,10 @@ namespace PManager
     /// </summary>
     public partial class App : Application
     {
-        protected void ApplicationStart(object sender, StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);
+
             sessionClose();
         }
 

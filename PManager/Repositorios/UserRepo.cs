@@ -20,7 +20,36 @@ namespace PManager.Repositorios
     {
         public void Add(UserModel userModel)
         {
-            throw new NotImplementedException();
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "INSERT INTO USER (name, email, password) VALUES ( @name, @email, @password );";
+                command.Parameters.AddWithValue("@name", userModel.Name);
+                command.Parameters.AddWithValue("@email", userModel.Email);
+                command.Parameters.AddWithValue("@password", userModel.Password);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        public bool UserExists(string email)
+        {
+            bool validUser = false;
+
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
+            {
+                connection.Close();
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT * FROM USER WHERE email =@email";
+                command.Parameters.AddWithValue("@email", email);
+                validUser = command.ExecuteScalar() == null ? false : true;
+            }
+
+            return validUser;
+
         }
 
         public bool AuthenticateUser(NetworkCredential credential)
@@ -56,6 +85,7 @@ namespace PManager.Repositorios
                 command.Parameters.AddWithValue("@profile_picture", userModel.ProfilePicture);
                 command.Parameters.AddWithValue("@id", userModel.Id);
                 command.ExecuteNonQuery();
+                connection.Close();
             }
 
         }

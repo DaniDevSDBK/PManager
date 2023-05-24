@@ -14,7 +14,10 @@
         Background="Transparent"
         MouseDown="Window_MouseDown"
         Title="RegisterView" Height="450" Width="500">
-
+    
+    <Window.DataContext>
+        <viewModel:RegisterViewModel/>
+    </Window.DataContext>
 
     <Border CornerRadius="25" BorderThickness="5" Opacity="1">
 
@@ -183,7 +186,7 @@
                            Width="198"/>
 
                 <TextBox x:Name="email" 
-                         Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" 
+                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
                          FontSize="13" 
                          FontWeight="Medium" 
                          FontFamily="Arial" 
@@ -224,7 +227,7 @@
                                                 Margin="25,5,25,0"/>
 
                 <Button x:Name="btnRegister" 
-                        Command ="{Binding LogInCmd}" 
+                        Command ="{Binding RegisterCommand}" 
                         BorderThickness="0"
                         Content="Register" 
                         Foreground="White" 
@@ -269,11 +272,7 @@
                             HorizontalAlignment="Center"
                             Margin="0,15,0,0">
 
-                    <Label x:Name="lblError" Foreground="DarkRed">
-                        
-                        Label to show errors
-                        
-                    </Label>
+                    <Label x:Name="lblError" Foreground="DarkRed" Content="{Binding ErrorMessage}"/>
 
                 </StackPanel>
 
