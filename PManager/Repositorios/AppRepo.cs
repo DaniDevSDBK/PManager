@@ -19,29 +19,26 @@ namespace PManager.Repositorios
 {
     public class AppRepo : UserRepo, AppRepositable
     {
-        public void AddApp(AppModel appModel)
+        public async void AddApp(AppModel appModel)
         {
             if (!CheckApp(appModel.AppName))
             {
-                using (var connection = new SQLiteConnection(GetConecction()))
-                using (var command = new SQLiteCommand())
-                {
-                    //Insert App Name
-                    connection.Open();
-                    command.Connection = connection;
-                    command.CommandText = "INSERT INTO APP(NAME) VALUES('" + appModel.AppName.ToUpper() + "')";
-                    command.ExecuteNonQuery();
-                    connection.Close();
 
-                    //Insert User Name and App Password
-                    connection.Open();
-                    command.Connection = connection;
-                    command.CommandText = "INSERT INTO UserApp VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "', " + GetAppByName(appModel.AppName.ToUpper()).AppId + ",'" +appModel.UserAppName+"','"+appModel.AppPassword+"')";
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                }
+                await InsertAppInfo(appModel);
+
+                await InsertAppAdditionalInfo(appModel);
+
             }
             else
+            {
+                await InsertAppAdditionalInfo(appModel);
+            }
+
+        }
+
+        private async Task InsertAppAdditionalInfo(AppModel appModel)
+        {
+            try
             {
                 using (var connection = new SQLiteConnection(GetConecction()))
                 using (var command = new SQLiteCommand())
@@ -49,13 +46,26 @@ namespace PManager.Repositorios
                     //Insert User Name and App Password
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "INSERT INTO UserApp VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "','" + appModel.UserAppName + "','" + appModel.AppPassword + "')";
+                    command.CommandText = "INSERT INTO UserApp VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "', " + GetAppByName(appModel.AppName.ToUpper()).AppId + ",'" + appModel.UserAppName + "','" + appModel.AppPassword + "')";
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
 
-            }
+            }catch{}
+        }
 
+        public async Task InsertAppInfo(AppModel appModel)
+        {
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
+            {
+                //Insert App Name
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "INSERT INTO APP(NAME) VALUES('" + appModel.AppName.ToUpper() + "')";
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
 
         public void DeleteApp(AppModel appModel)
@@ -112,7 +122,7 @@ namespace PManager.Repositorios
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM APP WHERE NAME ='@APPNAME'";
+                command.CommandText = "SELECT * FROM APP WHERE NAME = @APPNAME";
                 command.Parameters.Add("@APPNAME", DbType.String).Value = name;
                 using (var reader = command.ExecuteReader())
                 {
@@ -120,8 +130,8 @@ namespace PManager.Repositorios
                     {
                         app=new AppModel()
                         {
-                            AppId= Int32.Parse(reader[0].ToString()),
-                            AppName = reader[1].ToString(),  
+                            AppId = reader.GetInt32(0),
+                            AppName = reader.GetString(1),
                         };
                     }
                 }
@@ -158,7 +168,7 @@ namespace PManager.Repositorios
                         {
                             connection2.Open();
                             command2.Connection = connection2;
-                            command2.CommandText = "SELECT COUNT(*) FROM APP JOIN USER_APP USING(IDAPP) WHERE NAME='" + app.AppName+"'";
+                            command2.CommandText = "SELECT COUNT(*) FROM APP JOIN UserApp USING(IDAPP) WHERE NAME='" + app.AppName+"'";
                             using (var readerSub = command2.ExecuteReader())
                             {
 

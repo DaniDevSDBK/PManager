@@ -41,6 +41,7 @@ namespace PManager.ViewModel
             {
                 var newUser = new UserModel();
                 newUser.UserName = UserName;
+                newUser.Name = UserName;
                 newUser.Email = Email;
                 newUser.Password = Password.ToString();
 
