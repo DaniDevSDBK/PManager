@@ -105,8 +105,8 @@
 
                             <StackPanel Orientation="Horizontal">
 
-                                <fa:IconImage Icon="Home" Style="{StaticResource btnIcon}"/>
-                                <TextBlock Text="Home" Style="{StaticResource btnText}"/>
+                                <fa:IconImage Icon="Home" Style="{StaticResource btnIcon}" Foreground="Green"/>
+                                <TextBlock Text="Home" Style="{StaticResource btnText}" Foreground="Green"/>
 
                             </StackPanel>
                         </RadioButton>
@@ -119,8 +119,8 @@
 
                             <StackPanel Orientation="Horizontal">
 
-                                <fa:IconImage Icon="AppStore" Style="{StaticResource btnIcon}"/>
-                                <TextBlock Text="New App" Style="{StaticResource btnText}"/>
+                                <fa:IconImage Icon="AppStore" Style="{StaticResource btnIcon}" Foreground="DarkGoldenrod"/>
+                                <TextBlock Text="New App" Style="{StaticResource btnText}" Foreground="DarkGoldenrod"/>
 
                             </StackPanel>
                         </RadioButton>
@@ -133,8 +133,8 @@
 
                             <StackPanel Orientation="Horizontal">
 
-                                <fa:IconImage Icon="List" Style="{StaticResource btnIcon}"/>
-                                <TextBlock Text="My List" Style="{StaticResource btnText}"/>
+                                <fa:IconImage Icon="List" Style="{StaticResource btnIcon}" Foreground="Yellow"/>
+                                <TextBlock Text="My List" Style="{StaticResource btnText}" Foreground="Yellow"/>
 
                             </StackPanel>
                         </RadioButton>
@@ -147,8 +147,8 @@
 
                             <StackPanel Orientation="Horizontal">
 
-                                <fa:IconImage Icon="Tools" Style="{StaticResource btnIcon}"/>
-                                <TextBlock Text="Settings" Style="{StaticResource btnText}"/>
+                                <fa:IconImage Icon="Tools" Style="{StaticResource btnIcon}" Foreground="Violet"/>
+                                <TextBlock Text="Settings" Style="{StaticResource btnText}" Foreground="Violet"/>
 
                             </StackPanel>
                         </RadioButton>

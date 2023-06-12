@@ -38,20 +38,16 @@ namespace PManager.Repositorios
 
         private async Task InsertAppAdditionalInfo(AppModel appModel)
         {
-            try
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
             {
-                using (var connection = new SQLiteConnection(GetConecction()))
-                using (var command = new SQLiteCommand())
-                {
-                    //Insert User Name and App Password
-                    connection.Open();
-                    command.Connection = connection;
-                    command.CommandText = "INSERT INTO UserApp VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "', " + GetAppByName(appModel.AppName.ToUpper()).AppId + ",'" + appModel.UserAppName + "','" + appModel.AppPassword + "')";
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                }
-
-            }catch{}
+                //Insert User Name and App Password
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "INSERT INTO UserApp VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "', " + GetAppByName(appModel.AppName.ToUpper()).AppId + ",'" + appModel.UserAppName + "','" + appModel.AppPassword + "')";
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
 
         public async Task InsertAppInfo(AppModel appModel)

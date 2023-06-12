@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using MySqlConnector;
 using PManager.Model;
 using System;
 using System.Collections.Generic;
@@ -137,5 +138,35 @@ namespace PManager.Repositorios
             throw new NotImplementedException();
         }
 
+        public bool SuscribeUser(string email)
+        {
+            var suscribed = false;
+
+            Task.Run(() => 
+            {
+                try
+                {
+
+                    using (var connection = new SQLiteConnection(GetConecction()))
+                    using (var command = new SQLiteCommand())
+                    {
+                        connection.Open();
+                        command.Connection = connection;
+                        command.CommandText = "UPDATE USER SET TYPE = 'TRUE' WHERE EMAIL =@EMAIL";
+                        command.Parameters.Add("@EMAIL", DbType.String).Value = email;
+                    }
+
+                    suscribed = true;
+                }
+                catch(Exception ex)
+                {
+                    throw;
+                }
+
+            });
+
+            return suscribed;
+
+        }
     }
 }

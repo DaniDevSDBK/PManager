@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="PManager.View.SuscriptionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PManager.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="DarkBlue">
+
+        <!--Rows Deifnitions-->
+        <Grid.RowDefinitions>
+
+            <!--Blank-->
+            <RowDefinition Height="10"/>
+            <!--Content-->
+            <RowDefinition Height="*"/>
+            <!--Blank-->
+            <RowDefinition Height="10"/>
+
+        </Grid.RowDefinitions>
+
+        <!--Columns Definitions-->
+        <Grid.ColumnDefinitions>
+
+            <!--Blank-->
+            <ColumnDefinition Width="10"/>
+            <!--Content-->
+            <ColumnDefinition Width="*"/>
+            <!--Blank-->
+            <ColumnDefinition Width="10"/>
+
+        </Grid.ColumnDefinitions>
+
+        <Border CornerRadius="25" Grid.Column="1" Grid.Row="1" BorderBrush="Bisque" BorderThickness="2">
+
+            <Grid>
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+
+				<TextBlock Grid.Row="0" Text="¡Únete a nuestra suscripción premium!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="WhiteSmoke"/>
+
+				<StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+					<StackPanel.Resources>
+						<Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+							<Setter Property="Padding" Value="20,10" />
+							<Setter Property="FontSize" Value="16" />
+							<Setter Property="Foreground" Value="White" />
+							<Setter Property="Background" Value="#3F51B5" />
+							<Setter Property="BorderBrush" Value="#3F51B5" />
+							<Setter Property="BorderThickness" Value="0" />
+							<Setter Property="Template">
+								<Setter.Value>
+									<ControlTemplate TargetType="Button">
+										<Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+											<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+										</Border>
+									</ControlTemplate>
+								</Setter.Value>
+							</Setter>
+						</Style>
+					</StackPanel.Resources>
+
+					<Label Content="Última Suscripción: " Foreground="WhiteSmoke" Margin="0,0,0,40"/>
+
+					<Button Content="Plan Premium" Width="200" Height="50" />
+					
+				</StackPanel>
+				
+            </Grid>
+
+        </Border>
+
+    </Grid>
+</UserControl>

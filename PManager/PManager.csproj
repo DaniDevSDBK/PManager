@@ -31,6 +31,7 @@
     <PackageReference Include="FontAwesome.Sharp" Version="6.2.1" />
     <PackageReference Include="MySql.Data" Version="8.0.31" />
     <PackageReference Include="MySqlConnector" Version="2.2.2" />
+    <PackageReference Include="PayPal" Version="1.9.1" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.117" />
   </ItemGroup>
 

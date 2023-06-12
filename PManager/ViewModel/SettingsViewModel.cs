@@ -32,7 +32,7 @@ namespace PManager.ViewModel
         public SettingsViewModel()
         {
 
-            UpdateProfilePicture = new RelayCommand(ExecUpdateProfilePicture);
+            
             UpdateUserData = new RelayCommand(ExecUserDataUpdate);
 
         }
