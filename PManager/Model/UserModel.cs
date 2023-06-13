@@ -17,6 +17,7 @@ namespace PManager.Model
         public string LastName { get; set; }
         public string Email { get; set; }
         public byte[] ProfilePicture{ get; set; }
+        public int Type { get; set; }
 
     }
 }

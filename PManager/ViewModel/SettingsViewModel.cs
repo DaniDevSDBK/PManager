@@ -1,21 +1,14 @@
 ﻿using Microsoft.Win32;
 using PManager.Model;
 using PManager.Repositorios;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace PManager.ViewModel
 {
-    public class SettingsViewModel:BaseViewModel
+    public class SettingsViewModel : BaseViewModel
     {
         private UserContext _currentUserAccount = UserContext.Instance;
         private UserModel _currentUserCopy;
@@ -23,7 +16,7 @@ namespace PManager.ViewModel
 
         public string ErrorLabelMessagge { get; set; }
 
-        public UserContext CurrentUserAccount { get { return _currentUserAccount; } set { this._currentUserAccount = value;} }
+        public UserContext CurrentUserAccount { get { return _currentUserAccount; } set { this._currentUserAccount = value; } }
 
         //Commands
         public ICommand UpdateProfilePicture { get; }
@@ -32,9 +25,7 @@ namespace PManager.ViewModel
         public SettingsViewModel()
         {
 
-            
             UpdateUserData = new RelayCommand(ExecUserDataUpdate);
-
         }
 
         private void ExecUpdateProfilePicture(object obj)
@@ -60,7 +51,7 @@ namespace PManager.ViewModel
             {
                 this._currentUserCopy = new UserModel()
                 {
-                    Id = 1,
+                    Id = CurrentUserAccount.CurrentUser.Id,
                     Name = CurrentUserAccount.CurrentUser.UserName,
                     UserName = CurrentUserAccount.CurrentUser.UserName,
                     Email = CurrentUserAccount.CurrentUser.Email,
@@ -78,7 +69,7 @@ namespace PManager.ViewModel
             {
                 ErrorLabelMessagge = "No se pudo actualizar el perfil. Por favor, inténtelo de nuevo más tarde.";
             }
-            
+
         }
 
         private BitmapImage ByteArrayToBitmapImage(byte[] byteArray)

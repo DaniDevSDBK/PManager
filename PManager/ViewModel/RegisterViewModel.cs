@@ -16,6 +16,7 @@ namespace PManager.ViewModel
         private string userName;
         private string email;
         private SecureString password;
+        private SecureString confirmPassword;
         private string errorMessage;
         private bool isViewVisible = true;
         private UIRepositable uRepos;
@@ -23,6 +24,7 @@ namespace PManager.ViewModel
         public string UserName { get => userName; set { userName = value; OnPropertyChanged(nameof(userName)); } }
         public string Email { get => email; set { email = value; OnPropertyChanged(nameof(email)); } }
         public SecureString Password { get => password; set { password = value; OnPropertyChanged(nameof(password)); } }
+        public SecureString ConfirmPassword { get => confirmPassword; set { confirmPassword = value; OnPropertyChanged(nameof(confirmPassword)); } }
         public string ErrorMessage { get => errorMessage; set { errorMessage = value; OnPropertyChanged(nameof(errorMessage)); } }
         public bool IsViewVisible { get => isViewVisible; set { isViewVisible = value; OnPropertyChanged(nameof(isViewVisible)); } }
         public UIRepositable URepos { get => uRepos; set => uRepos = value; }
@@ -39,32 +41,40 @@ namespace PManager.ViewModel
 
             try
             {
-                var newUser = new UserModel();
-                newUser.UserName = UserName;
-                newUser.Name = UserName;
-                newUser.Email = Email;
-                newUser.Password = Password.ToString();
-
-                await Task.Run(() =>
+                if (Password.Equals(ConfirmPassword))
                 {
 
-                    if (uRepos.UserExists(newUser.Email)) 
+                    var newUser = new UserModel();
+                    newUser.UserName = UserName;
+                    newUser.Name = UserName;
+                    newUser.Email = Email;
+                    newUser.Password = Password.ToString();
+
+                    await Task.Run(() =>
                     {
 
-                        throw new Exception();
-                        
-                    }
+                        if (uRepos.UserExists(newUser.Email))
+                        {
 
-                });
+                            throw new Exception();
 
-                await Task.Run(() =>
+                        }
+
+                    });
+
+                    await Task.Run(() =>
+                    {
+
+                        uRepos.Add(newUser);
+
+                    });
+
+                    ErrorMessage = "Usuario Creado Con Éxito.";
+                }
+                else
                 {
-
-                    uRepos.Add(newUser);
-
-                });
-
-                ErrorMessage = "Usuario Creado Con Éxito.";
+                    ErrorMessage = "La contraseña no coincide. ";
+                }
             }
             catch
             {

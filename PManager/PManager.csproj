@@ -6,11 +6,15 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Img\KeyVault.ico</ApplicationIcon>
+    <PackageIcon>KeyVault.png</PackageIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Data\pm.db" />
-    <None Remove="Img\KeyVault.png" />
     <None Remove="Img\UserProfileDefaultPicture.png" />
     <None Remove="Repositorios\jog4jxtq.xwr~" />
     <None Remove="Repositorios\pm.db" />
@@ -28,6 +32,7 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="eazfuscator.net" Version="3.3.0" />
     <PackageReference Include="FontAwesome.Sharp" Version="6.2.1" />
     <PackageReference Include="MySql.Data" Version="8.0.31" />
     <PackageReference Include="MySqlConnector" Version="2.2.2" />
@@ -38,6 +43,13 @@
   <ItemGroup>
     <Resource Include="Img\KeyVault.png" />
     <Resource Include="Img\UserProfileDefaultPicture.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Img\KeyVault.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

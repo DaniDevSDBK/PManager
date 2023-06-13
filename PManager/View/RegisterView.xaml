@@ -172,6 +172,7 @@
                          BorderBrush="DarkBlue" 
                          BorderThickness="1,1,1,1" 
                          Width="200" 
+                         ToolTip="Write Your User Name"
                          VerticalContentAlignment="Center" 
                          Margin="0,5,0,0"/>
                 
@@ -196,6 +197,7 @@
                          BorderBrush="DarkBlue" 
                          BorderThickness="1,1,1,1" 
                          Width="200" 
+                         ToolTip="Write Your Email, must be unique in the App"
                          VerticalContentAlignment="Center" 
                          Margin="0,5,0,0"/>
 
@@ -210,6 +212,7 @@
                            Width="198"/>
 
                 <mycontrols:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                ToolTip="Write Your Password"
                                                 Margin="25,5,25,0"/>
 
 
@@ -223,7 +226,8 @@
                            Height="11" 
                            Width="198"/>
 
-                <mycontrols:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                <mycontrols:BindablePasswordBox Password="{Binding ConfirmPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                ToolTip="Confirm Your Password"
                                                 Margin="25,5,25,0"/>
 
                 <Button x:Name="btnRegister" 
@@ -235,6 +239,7 @@
                         FontFamily="Arial" 
                         Cursor="Hand" 
                         Height="28"
+                        ToolTip="Register Your New User"
                         Margin="0,20,0,0">
 
                     <Button.Style>

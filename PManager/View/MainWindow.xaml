@@ -35,6 +35,10 @@
         <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
             <local:SettingsView/>
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:SuscriptionViewModel}">
+            <local:SuscriptionView/>
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -82,7 +86,7 @@
                         <StackPanel Orientation="Horizontal"
                                     Height="35"
                                     Margin="15,25,0,40">
-                            <Image Source="/Img/imgCandado.jpg"
+                            <Image Source= "../Img/KeyVault.png"
                                    Height="30"/>
 
                             <TextBlock Text="Password Manager"
@@ -105,8 +109,8 @@
 
                             <StackPanel Orientation="Horizontal">
 
-                                <fa:IconImage Icon="Home" Style="{StaticResource btnIcon}" Foreground="Green"/>
-                                <TextBlock Text="Home" Style="{StaticResource btnText}" Foreground="Green"/>
+                                <fa:IconImage Icon="Home" Margin="10,0,0,0" Style="{StaticResource btnIcon}" Foreground="LightGreen"/>
+                                <TextBlock Text="Home" Style="{StaticResource btnText}" Foreground="LightGreen"/>
 
                             </StackPanel>
                         </RadioButton>
@@ -119,8 +123,8 @@
 
                             <StackPanel Orientation="Horizontal">
 
-                                <fa:IconImage Icon="AppStore" Style="{StaticResource btnIcon}" Foreground="DarkGoldenrod"/>
-                                <TextBlock Text="New App" Style="{StaticResource btnText}" Foreground="DarkGoldenrod"/>
+                                <fa:IconImage Icon="AppStore" Margin="10,0,0,0" Style="{StaticResource btnIcon}" Foreground="LemonChiffon"/>
+                                <TextBlock Text="New App" Style="{StaticResource btnText}" Foreground="LemonChiffon"/>
 
                             </StackPanel>
                         </RadioButton>
@@ -133,7 +137,7 @@
 
                             <StackPanel Orientation="Horizontal">
 
-                                <fa:IconImage Icon="List" Style="{StaticResource btnIcon}" Foreground="Yellow"/>
+                                <fa:IconImage Icon="List" Margin="10,0,0,0" Style="{StaticResource btnIcon}" Foreground="Yellow"/>
                                 <TextBlock Text="My List" Style="{StaticResource btnText}" Foreground="Yellow"/>
 
                             </StackPanel>
@@ -147,8 +151,22 @@
 
                             <StackPanel Orientation="Horizontal">
 
-                                <fa:IconImage Icon="Tools" Style="{StaticResource btnIcon}" Foreground="Violet"/>
+                                <fa:IconImage Icon="Tools" Margin="10,0,0,0" Style="{StaticResource btnIcon}" Foreground="Violet"/>
                                 <TextBlock Text="Settings" Style="{StaticResource btnText}" Foreground="Violet"/>
+
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!--btnSettings-->
+                        <RadioButton x:Name="btnHome4" 
+                                     Style="{StaticResource menuButton}"
+                                     Tag="{StaticResource BorderColor1}"
+                                     Command="{Binding ShowSuscriptionViewCommand}">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <fa:IconImage Icon="Paypal" Margin="10,0,0,0" Style="{StaticResource btnIcon}" Foreground="Cyan"/>
+                                <TextBlock Text="Suscription" Style="{StaticResource btnText}" Foreground="Cyan"/>
 
                             </StackPanel>
                         </RadioButton>

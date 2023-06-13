@@ -32,6 +32,7 @@ namespace PManager.ViewModel
         public ICommand ShowMyAppListViewCommand { get; }
         public ICommand ShowSettingsViewCommand { get; }
         public ICommand ShowLogInViewCommand { get; }
+        public ICommand ShowSuscriptionViewCommand { get; }
 
         public MainViewModel()
         {
@@ -42,12 +43,20 @@ namespace PManager.ViewModel
             ShowAddAppViewCommand = new RelayCommand(ExecuteShowAddAppViewCommand);
             ShowMyAppListViewCommand = new RelayCommand(ExecuteShowAppListViewCommand);
             ShowSettingsViewCommand = new RelayCommand(ExecShowSettingsViewCommand);
+            ShowSuscriptionViewCommand = new RelayCommand(ExecShowSuscriptionViewCommand);
 
             CurrentChildView = new HomeViewModel();
 
             //Default view
             LoadCurrentUserData();
 
+        }
+
+        private void ExecShowSuscriptionViewCommand(object obj)
+        {
+            CurrentChildView = new SuscriptionViewModel();
+            CurrentWindowTittle = "Suscription";
+            IconView = IconChar.Paypal;
         }
 
         private void ExecShowSettingsViewCommand(object obj)
@@ -80,20 +89,23 @@ namespace PManager.ViewModel
 
         private void LoadCurrentUserData()
         {
-            var user = userRepo.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
+            var user = userRepo.GetByEmail(Thread.CurrentPrincipal.Identity.Name);
 
             if (user != null)
             {
 
-                var account = new UserAccountModel()
+                currentUserAccount = new UserAccountModel()
                 {
+                    Id = user.Id,
                     UserName = user.UserName,
                     DisplayName = $"{user.Name} {user.LastName}",
                     Email = user.Email,
-                    ProfilePicture = ByteArrayToBitmapImage(user.ProfilePicture)
+                    Password = user.Password,
+                    ProfilePicture = ByteArrayToBitmapImage(user.ProfilePicture),
+                    IsSuscribed = user.Type.Equals(1),
                 };
 
-                _currentUser.CurrentUser = account;
+                _currentUser.CurrentUser = currentUserAccount;
 
             }
             else

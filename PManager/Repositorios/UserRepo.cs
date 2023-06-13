@@ -63,8 +63,8 @@ namespace PManager.Repositorios
                 connection.Close();
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM USER WHERE NAME =@USERNAME AND PASSWORD =@PASSWORD";
-                command.Parameters.Add(new SQLiteParameter("@USERNAME", DbType.String) { Value = credential.UserName });
+                command.CommandText = "SELECT * FROM USER WHERE EMAIL =@EMAIL AND PASSWORD =@PASSWORD";
+                command.Parameters.Add(new SQLiteParameter("@EMAIL", DbType.String) { Value = credential.UserName });
                 command.Parameters.Add(new SQLiteParameter("@PASSWORD", DbType.String) { Value = credential.Password });
                 validUser = command.ExecuteScalar() == null ? false : true;
             }
@@ -101,7 +101,7 @@ namespace PManager.Repositorios
             throw new NotImplementedException();
         }
 
-        public UserModel GetByUsername(string username)
+        public async Task<UserModel> GetByUsername(string username)
         {
             UserModel user = null;
 
@@ -130,6 +130,74 @@ namespace PManager.Repositorios
                 }
             }
 
+            user.Type = await GetUserType(user.Id);
+
+            return user;
+        }
+
+        private async Task<int> GetUserType(int id)
+        {
+
+            var n = 0;
+
+            try
+            {
+                using (var connection = new SQLiteConnection(GetConecction()))
+                using (var command = new SQLiteCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT IDTYPE FROM UserType WHERE idUser =@idUser";
+                    command.Parameters.Add("@idUser", DbType.String).Value = id;
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            n = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                n = 0;
+            }
+
+            return n;
+        }
+
+        public UserModel GetByEmail(string email)
+        {
+            UserModel user = null;
+
+            using (var connection = new SQLiteConnection(GetConecction()))
+            using (var command = new SQLiteCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT * FROM USER WHERE EMAIL =@USEREMAIL";
+                command.Parameters.Add("@USEREMAIL", DbType.String).Value = email;
+                ImageBrush imgBrush = new ImageBrush();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        user = new UserModel()
+                        {
+                            Id = Int32.Parse(reader[0].ToString()),
+                            UserName = reader[1].ToString(),
+                            Name = reader[1].ToString(),
+                            Email = reader[2].ToString(),
+                            ProfilePicture = (byte[])reader[4],
+                        };
+                    }
+                }
+            }
+
+            user.Type = GetUserType(user.Id).Result;
+
             return user;
         }
 
@@ -142,7 +210,9 @@ namespace PManager.Repositorios
         {
             var suscribed = false;
 
-            Task.Run(() => 
+            var idUser = GetByEmail(email).Id;
+
+            Task.Run(() =>
             {
                 try
                 {
@@ -152,13 +222,14 @@ namespace PManager.Repositorios
                     {
                         connection.Open();
                         command.Connection = connection;
-                        command.CommandText = "UPDATE USER SET TYPE = 'TRUE' WHERE EMAIL =@EMAIL";
-                        command.Parameters.Add("@EMAIL", DbType.String).Value = email;
+                        command.CommandText = "INSERT INTO UserType VALUES(@IDUSER, 1);";
+                        command.Parameters.Add("@IDUSER", DbType.String).Value = idUser;
+                        command.ExecuteNonQuery();
                     }
 
                     suscribed = true;
                 }
-                catch(Exception ex)
+                catch (Exception ex) 
                 {
                     throw;
                 }
@@ -167,6 +238,14 @@ namespace PManager.Repositorios
 
             return suscribed;
 
+        }
+
+        UserModel UIRepositable.GetByUsername(string username)
+        {
+            Task<UserModel> user = GetByUsername(username);
+            user.Wait();
+
+            return user.Result;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace PManager.Model
         public void Edit(UserModel userModel);
         public void Remove(int id);
         UserModel GetById(int id);
+        UserModel GetByEmail(string email);
         UserModel GetByUsername(string username);
         IEnumerable<UserModel> GetByAll();
         bool UserExists(string email);

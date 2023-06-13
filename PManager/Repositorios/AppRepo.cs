@@ -44,7 +44,7 @@ namespace PManager.Repositorios
                 //Insert User Name and App Password
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO UserApp VALUES('" + GetByUsername(Thread.CurrentPrincipal.Identity.Name).Id + "', " + GetAppByName(appModel.AppName.ToUpper()).AppId + ",'" + appModel.UserAppName + "','" + appModel.AppPassword + "')";
+                command.CommandText = "INSERT INTO UserApp VALUES('" + GetByEmail(Thread.CurrentPrincipal.Identity.Name).Id + "', " + GetAppByName(appModel.AppName.ToUpper()).AppId + ",'" + appModel.UserAppName + "','" + appModel.AppPassword + "')";
                 command.ExecuteNonQuery();
                 connection.Close();
             }

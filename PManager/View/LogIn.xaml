@@ -191,6 +191,7 @@
                          BorderBrush="DarkBlue" 
                          BorderThickness="1,1,1,1" 
                          Width="200" 
+                         ToolTip="Write Your Email"
                          VerticalContentAlignment="Center" 
                          Margin="0,5,0,0"/>
 
@@ -205,6 +206,7 @@
                            Width="198"/>
 
                 <mycontrols:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                ToolTip="Write Your Password"
                                                 Margin="25,5,25,0"/>
                 
                 <Button x:Name="btnLogIn" 
@@ -216,6 +218,7 @@
                         FontFamily="Arial" 
                         Cursor="Hand" 
                         Height="28"
+                        ToolTip="Click to LogIn"
                         Margin="0,20,0,0">
 
                     <Button.Style>
@@ -258,6 +261,7 @@
                         FontFamily="Arial" 
                         Cursor="Hand" 
                         Height="28"
+                        ToolTip="Click to Open the Register form"
                         Margin="0,20,0,0">
 
                     <Button.Style>
