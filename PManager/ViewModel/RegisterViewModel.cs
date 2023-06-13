@@ -1,10 +1,9 @@
 ﻿using PManager.Model;
 using PManager.Repositorios;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
+using System.IO;
 using System.Security;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -38,49 +37,75 @@ namespace PManager.ViewModel
 
         private async void ExecRegisterCommand(object obj)
         {
-
             try
             {
-                if (Password.Equals(ConfirmPassword))
+                string rutaEjecutable = Process.GetCurrentProcess().MainModule.FileName;
+                string rutaImg = Path.Combine(Path.GetDirectoryName(rutaEjecutable), "Img");
+                string rutaImagen = Path.Combine(rutaImg, "UserProfileDefaultPicture.png");
+
+                if (UserName.Length>=4 && !String.IsNullOrWhiteSpace(UserName) && !String.IsNullOrWhiteSpace(Email) && !String.IsNullOrWhiteSpace(Email) && !String.IsNullOrWhiteSpace(Password.ToString()) && !String.IsNullOrWhiteSpace(ConfirmPassword.ToString()))
                 {
-
-                    var newUser = new UserModel();
-                    newUser.UserName = UserName;
-                    newUser.Name = UserName;
-                    newUser.Email = Email;
-                    newUser.Password = Password.ToString();
-
-                    await Task.Run(() =>
+                    if (!CheckIfEmailExits() && Password.ToString().Equals(ConfirmPassword.ToString()))
                     {
 
-                        if (uRepos.UserExists(newUser.Email))
+                        var newUser = new UserModel();
+                        newUser.UserName = UserName;
+                        newUser.Name = UserName;
+                        newUser.Email = Email;
+                        newUser.ProfilePicture = File.ReadAllBytes(rutaImagen);
+                        newUser.Password = BCrypt.Net.BCrypt.HashPassword(Password.ToString(), 11);
+
+                        await Task.Run(() =>
                         {
 
-                            throw new Exception();
+                            if (uRepos.UserExists(newUser.Email))
+                            {
 
-                        }
+                                throw new Exception();
 
-                    });
+                            }
 
-                    await Task.Run(() =>
+                        });
+
+                        await Task.Run(() =>
+                        {
+
+                            uRepos.Add(newUser);
+
+                        });
+
+                        UserName = "";
+                        Email = "";
+                        UserName = "";
+                        Password.Clear();
+                        ConfirmPassword.Clear();
+                        ErrorMessage = "Usuario Creado Con Éxito.";
+                    }
+                    else
                     {
-
-                        uRepos.Add(newUser);
-
-                    });
-
-                    ErrorMessage = "Usuario Creado Con Éxito.";
+                        ErrorMessage = "La contraseña no coincide. ";
+                    }
                 }
-                else
-                {
-                    ErrorMessage = "La contraseña no coincide. ";
-                }
+
             }
             catch
             {
                 ErrorMessage = "Error al crear usuario.";
             }
             
+        }
+
+        private bool CheckIfEmailExits()
+        {
+            var exists = false;
+
+            try
+            {
+                exists = String.IsNullOrWhiteSpace(uRepos.GetByEmail(Email).Email)?false:true;
+            }
+            catch { }
+
+            return exists;
         }
     }
 }

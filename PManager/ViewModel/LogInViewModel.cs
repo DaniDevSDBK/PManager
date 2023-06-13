@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PManager.ViewModel
 {
@@ -64,11 +65,10 @@ namespace PManager.ViewModel
 
             return validData;
         }
-
         private void ExecLoginCmd(object obj)
         {
 
-            var isValidUser = uRepos.AuthenticateUser(new System.Net.NetworkCredential(userName, password));
+            var isValidUser = BCrypt.Net.BCrypt.Verify(Password.ToString(), uRepos.GetByEmail(UserName).Password);
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(userName), null);
