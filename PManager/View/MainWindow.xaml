@@ -89,7 +89,7 @@
                             <Image Source= "../Img/KeyVault.png"
                                    Height="30"/>
 
-                            <TextBlock Text="Password Manager"
+                            <TextBlock Text="KeyVault"
                                        Foreground="{StaticResource BorderColor1}"
                                        FontSize="20"
                                        FontFamily="Arial"

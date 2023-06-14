@@ -1,5 +1,6 @@
 ﻿using PManager.Model;
 using PManager.Repositorios;
+using PManager.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,9 @@ namespace PManager.ViewModel
         //Constructor
         public AddAppViewModel()
         {
+            SecurityService.GenerateKeys();
+            SecurityService.GetPublicKey();
+
             appRepo = new AppRepo();
             SaveNewAppCmd = new RelayCommand(ExecSaveNewAppCmd);
 
@@ -73,7 +77,7 @@ namespace PManager.ViewModel
         {
             if (CheckData())
             {
-                appRepo.AddApp(new AppModel(AppName, UserAppName, UserAppPwd));
+                appRepo.AddApp(new AppModel(AppName, UserAppName, SecurityService.Encrypt(UserAppPwd)));
                 AppName = "";
                 UserAppName = "";
                 UserAppPwd = "";

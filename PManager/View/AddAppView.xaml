@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PManager.View"
              xmlns:viewModel="clr-namespace:PManager.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="850">
     
     <!--Diseño: 740 de ancho-->
 
@@ -16,7 +16,9 @@
 
     <Border CornerRadius="25"
             Margin="30,30,30,30"
-            Background="DarkCyan">
+            BorderBrush="White"
+            BorderThickness="1"
+            Background="DarkBlue">
 
         <Grid Background="Transparent">
 
@@ -42,10 +44,10 @@
 
             <!--App Form-->
             <Grid Grid.Column="0">
-                
+
                 <!--Columns-->
                 <Grid.ColumnDefinitions>
-                    
+
                     <!--Blank-->
                     <ColumnDefinition Width="10"/>
                     <!--LabelsColumn-->
@@ -58,7 +60,7 @@
                     <ColumnDefinition Width="10"/>
 
                 </Grid.ColumnDefinitions>
-                
+
                 <!--Rows-->
                 <Grid.RowDefinitions>
 
@@ -103,7 +105,7 @@
                        HorizontalContentAlignment="Center"
                        VerticalContentAlignment="Center"/>
                 </Border>-->
-                
+
                 <!--Labels-->
                 <Label x:Name="lbTitleApp"
                        Grid.Column="1"
@@ -114,7 +116,7 @@
                        HorizontalContentAlignment="Center"
                        VerticalAlignment="Center"
                        Foreground="LightCyan"/>
-                
+
                 <Label x:Name="lbAppName"
                        Grid.Column="1"
                        Grid.Row="3"
@@ -176,7 +178,7 @@
                          HorizontalContentAlignment="Center"
                          VerticalContentAlignment="Center"
                          BorderThickness="0"/>
-                    
+
                 </Border>
 
                 <Border CornerRadius="10"
@@ -190,7 +192,7 @@
                          HorizontalContentAlignment="Center"
                          VerticalContentAlignment="Center"
                          BorderThickness="0"/>
-                    
+
                 </Border>
 
                 <Border CornerRadius="10"
@@ -206,20 +208,20 @@
                          BorderThickness="0"/>
                 </Border>
 
-                <Border CornerRadius="10"
-                    Grid.Column="1"
-                    Grid.Row="11"
-                    Grid.ColumnSpan="3"
-                    Background="Azure">
-
-                    <Button x:Name="btnSave"
+                <Button x:Name="btnSave"
                         Command="{Binding SaveNewAppCmd}"
                         Content="Save"
-                        Background="Transparent"
-                        BorderThickness="0"/>
-                </Border>
+                        Grid.Column="1"
+                        Grid.Row="11"
+                        FontSize="15"
+                        Height="40"
+                        Grid.RowSpan="2"
+                        Grid.ColumnSpan="3"
+                        Style="{StaticResource UpdateButtonStyle}"
+                        BorderThickness="0" HorizontalAlignment="Center" Width="170"/>
+
             </Grid>
-            
+
             <!--Password Generator-->
             <Grid Grid.Column="1">
 
@@ -281,7 +283,7 @@
                        HorizontalContentAlignment="Center"
                        VerticalAlignment="Center"
                        Foreground="LightCyan"/>
-                
+
                 <Label x:Name="lbPasswordLength"
                        Grid.Column="1"
                        Grid.Row="3"
@@ -330,7 +332,7 @@
                          HorizontalContentAlignment="Center"
                          VerticalContentAlignment="Center"
                          BorderThickness="0"/>
-                    
+
                 </Border>
 
                 <Border CornerRadius="10"
@@ -379,25 +381,25 @@
                           Grid.ColumnSpan="3"
                           Grid.Row="10"
                           Margin="10"
+                          HorizontalAlignment="Center"
                           Foreground="LightCyan"/>
 
-                <Border CornerRadius="10"
-                    Grid.Column="1"
-                    Grid.Row="11"
-                    Grid.ColumnSpan="3"
-                    Background="Azure">
-
-                    <Button x:Name="btnGeneratePassword"
+                <Button x:Name="btnGeneratePassword"
                         Command="{Binding GeneratePasswordCmd}"
+                        HorizontalAlignment="Center"
+                        Grid.Column="1"
+                        Grid.Row="11"
+                        Grid.ColumnSpan="3"
+                        FontSize="15"
+                        Height="40"
+                        Grid.RowSpan="2"
+                        Style="{StaticResource UpdateButtonStyle}"
                         Content="Generate Password"
-                        Background="Transparent"
                         BorderThickness="0"/>
-                </Border>
 
             </Grid>
 
         </Grid>
-
 
     </Border>
 </UserControl>

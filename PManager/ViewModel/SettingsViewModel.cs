@@ -13,10 +13,36 @@ namespace PManager.ViewModel
         private UserContext _currentUserAccount = UserContext.Instance;
         private UserModel _currentUserCopy;
         private UserRepo _userRepo = new UserRepo();
+        private string _newpassword;
+        private string _confirmnewpassword;
 
         public string ErrorLabelMessagge { get; set; }
 
         public UserContext CurrentUserAccount { get { return _currentUserAccount; } set { this._currentUserAccount = value; } }
+        public string NewPassword
+        {
+            get { return _newpassword; }
+            set
+            {
+                if (_newpassword != value)
+                {
+                    _newpassword = value;
+                    OnPropertyChanged(nameof(NewPassword));
+                }
+            }
+        }
+        public string ConfirmNewPassword
+        {
+            get { return _confirmnewpassword; }
+            set
+            {
+                if (_confirmnewpassword != value)
+                {
+                    _confirmnewpassword = value;
+                    OnPropertyChanged(nameof(ConfirmNewPassword));
+                }
+            }
+        }
 
         //Commands
         public ICommand UpdateProfilePicture { get; }
@@ -24,7 +50,7 @@ namespace PManager.ViewModel
 
         public SettingsViewModel()
         {
-
+            UpdateProfilePicture = new RelayCommand(ExecUpdateProfilePicture);
             UpdateUserData = new RelayCommand(ExecUserDataUpdate);
         }
 
@@ -49,21 +75,30 @@ namespace PManager.ViewModel
 
             try
             {
-                this._currentUserCopy = new UserModel()
+                if (NewPassword.Equals(ConfirmNewPassword))
                 {
-                    Id = CurrentUserAccount.CurrentUser.Id,
-                    Name = CurrentUserAccount.CurrentUser.UserName,
-                    UserName = CurrentUserAccount.CurrentUser.UserName,
-                    Email = CurrentUserAccount.CurrentUser.Email,
-                    ProfilePicture = BitmapImageToByteArray(CurrentUserAccount.CurrentUser.ProfilePicture),
-                };
+                    this._currentUserCopy = new UserModel()
+                    {
+                        Id = CurrentUserAccount.CurrentUser.Id,
+                        Name = CurrentUserAccount.CurrentUser.UserName,
+                        UserName = CurrentUserAccount.CurrentUser.UserName,
+                        Password = NewPassword,
+                        Email = CurrentUserAccount.CurrentUser.Email,
+                        ProfilePicture = BitmapImageToByteArray(CurrentUserAccount.CurrentUser.ProfilePicture),
+                    };
 
-                await Task.Run(() =>
+                    await Task.Run(() =>
+                    {
+                        _userRepo.Edit(this._currentUserCopy);
+                    });
+
+                    ErrorLabelMessagge = "Perfil Actualizado Correctamente.";
+                }
+                else
                 {
-                    _userRepo.Edit(this._currentUserCopy);
-                });
+                    ErrorLabelMessagge = "Las contraseñas no coinciden.";
+                }
 
-                ErrorLabelMessagge = "Perfil Actualizado Correctamente.";
             }
             catch
             {

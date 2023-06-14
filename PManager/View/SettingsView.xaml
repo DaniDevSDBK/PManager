@@ -145,7 +145,7 @@
                          VerticalAlignment="Top"
                          VerticalContentAlignment="Bottom"
                          ToolTip="Write Your New Password or RigthClick to Random Generator"
-                         Text="New Password"
+                         Text="{Binding NewPassword}"
                          Style="{StaticResource SingleLineTextBox}">
 
                     <TextBox.ContextMenu>
@@ -167,11 +167,11 @@
                          FontSize="18"
                          Width="Auto"
                          Grid.ColumnSpan="2"
-                         Foreground="Gray"
+                         Foreground="WhiteSmoke"
                          HorizontalContentAlignment="Left"
                          VerticalAlignment="Top"
                          VerticalContentAlignment="Bottom"
-                         Text="Confirm New Password"
+                         Text="{Binding ConfirmNewPassword}"
                          Style="{StaticResource SingleLineTextBox}"/>
 
                 <Border CornerRadius="25"
@@ -194,8 +194,8 @@
 
                 </Border>
 
-                <Label Grid.Row="9"
-                       Grid.Column="1"
+                <Label Grid.Row="8"
+                       Grid.Column="2"
                        Grid.ColumnSpan="4"
                        Margin="5,50,5,5"
                        Height="40"

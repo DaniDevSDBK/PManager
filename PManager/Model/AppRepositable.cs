@@ -17,7 +17,7 @@ namespace PManager.Model
 
         AppModel GetAppById(int id);
         AppModel GetAppByName(string name);
-        List<AppModel> UpdateData();
+        List<AppModel> UpdateData(int userId);
         List<ContentViewModel> GetContentList(string _appName);
     }
 }

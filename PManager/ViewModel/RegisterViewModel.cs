@@ -3,6 +3,7 @@ using PManager.Repositorios;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -39,9 +40,6 @@ namespace PManager.ViewModel
         {
             try
             {
-                string rutaEjecutable = Process.GetCurrentProcess().MainModule.FileName;
-                string rutaImg = Path.Combine(Path.GetDirectoryName(rutaEjecutable), "Img");
-                string rutaImagen = Path.Combine(rutaImg, "UserProfileDefaultPicture.png");
 
                 if (UserName.Length>=4 && !String.IsNullOrWhiteSpace(UserName) && !String.IsNullOrWhiteSpace(Email) && !String.IsNullOrWhiteSpace(Email) && !String.IsNullOrWhiteSpace(Password.ToString()) && !String.IsNullOrWhiteSpace(ConfirmPassword.ToString()))
                 {
@@ -52,8 +50,8 @@ namespace PManager.ViewModel
                         newUser.UserName = UserName;
                         newUser.Name = UserName;
                         newUser.Email = Email;
-                        newUser.ProfilePicture = File.ReadAllBytes(rutaImagen);
-                        newUser.Password = BCrypt.Net.BCrypt.HashPassword(Password.ToString(), 11);
+                        newUser.ProfilePicture = File.ReadAllBytes("../../../Img/UserProfileDefaultPicture.png");
+                        newUser.Password = BCrypt.Net.BCrypt.HashPassword(SecureStringToString(Password), 11);
 
                         await Task.Run(() =>
                         {
@@ -86,6 +84,10 @@ namespace PManager.ViewModel
                         ErrorMessage = "La contraseña no coincide. ";
                     }
                 }
+                else
+                {
+                    ErrorMessage = "Asegúrese de que la contraseña contiene al menos 6 carácteres";
+                }
 
             }
             catch
@@ -107,5 +109,19 @@ namespace PManager.ViewModel
 
             return exists;
         }
+        private string SecureStringToString(SecureString secureString)
+        {
+            IntPtr unmanagedString = IntPtr.Zero;
+            try
+            {
+                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(secureString);
+                return Marshal.PtrToStringUni(unmanagedString);
+            }
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+            }
+        }
+
     }
 }

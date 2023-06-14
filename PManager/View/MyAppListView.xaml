@@ -166,7 +166,8 @@
                        Grid.Column="1"/>
 
             <!--BodyContent-->
-            <ListView Grid.Row="3"
+            <ListView x:Name="MyMainList"
+                      Grid.Row="3"
                       Grid.Column="1"
                       Background="Transparent"
                       ItemsSource="{Binding Items}">
@@ -224,9 +225,57 @@
 
                                 <Grid>
 
-                                    <ListView ItemsSource="{Binding ItemsContent}" Background="Transparent" BorderThickness="0">
+                                    <ListView x:Name="MySubList" ItemsSource="{Binding ItemsContent}" Background="Transparent" BorderThickness="0">
+
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem">
+                                                <Setter Property="ContextMenu">
+                                                    <Setter.Value>
+                                                        <ContextMenu x:Name="ContextMenu" Background="DarkBlue" Style="{StaticResource ContextMenuStyle}">
+
+                                                            <MenuItem x:Name="CupyItem" Foreground="WhiteSmoke" Header="Copy..." Background="DarkBlue" ToolTip="Copy Your Password" Command="{Binding CopyCommand}">
+
+                                                                <MenuItem.Icon>
+
+                                                                    <fa:IconImage Icon="Copy" Foreground="LightGreen"/>
+
+                                                                </MenuItem.Icon>
+
+                                                            </MenuItem>
+
+                                                            <Separator Background="LightBlue"/>
+
+                                                            <MenuItem x:Name="EditItem" Foreground="WhiteSmoke" Header="Edit..." Background="DarkBlue" ToolTip="Edit Your Info">
+
+                                                                <MenuItem.Icon>
+
+                                                                    <fa:IconImage Icon="Edit" Foreground="Yellow"/>
+
+                                                                </MenuItem.Icon>
+
+
+                                                            </MenuItem>
+
+                                                            <Separator Background="LightBlue"/>
+
+                                                            <MenuItem x:Name="DeleteItem" Header="Delete..." Foreground="WhiteSmoke" Background="DarkBlue" ToolTip="Delete Selected Item" Command="{Binding DeleteCommand}">
+
+                                                                <MenuItem.Icon>
+
+                                                                    <fa:IconImage Icon="DeleteLeft" Foreground="Cyan"/>
+
+                                                                </MenuItem.Icon>
+
+                                                            </MenuItem>
+
+                                                        </ContextMenu>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
 
                                         <ListView.ItemTemplate>
+
                                             <DataTemplate>
 
                                                 <Grid Width="710">
@@ -248,39 +297,16 @@
                                                         <ColumnDefinition Width="*"/>
                                                         <!--Blank-->
                                                         <ColumnDefinition Width="10"/>
-                                                        <!--EditIcon-->
-                                                        <ColumnDefinition Width="20"/>
-                                                        <!--CopyIcon-->
-                                                        <ColumnDefinition Width="20"/>
-                                                        <!--DeleteIcon-->
-                                                        <ColumnDefinition Width="20"/>
 
                                                     </Grid.ColumnDefinitions>
 
                                                     <Label Grid.Column="1" Content="{Binding UserAppName}" Foreground="LightCyan" Grid.RowSpan="2"/>
-                                                    <Label Grid.Column="3" Content="{Binding UserAppPassword}" Foreground="LightCyan" Grid.RowSpan="2"/>
-
-                                                    <Button Style="{Binding itemButton}" Grid.Column="5" Grid.RowSpan="2" Background="Transparent" BorderThickness="0">
-
-                                                        <fa:IconImage Icon="Edit" Foreground="LightCyan"/>
-
-                                                    </Button>
-
-                                                    <Button Style="{Binding itemButton}" Grid.Column="6" Grid.RowSpan="2" Background="Transparent" BorderThickness="0" Command="{Binding CopyPasswordCommand}">
-
-                                                        <fa:IconImage Icon="Copy" Foreground="LightCyan"/>
-
-                                                    </Button>
-
-                                                    <Button Style="{Binding itemButton}" Grid.Column="7" Grid.RowSpan="2" Background="Transparent" BorderThickness="0" Command="{Binding DeleteRowCommand}">
-
-                                                        <fa:IconImage Icon="DeleteLeft" Foreground="LightCyan"/>
-
-                                                    </Button>
+                                                    <Label Grid.Column="3" Content="•••••" Foreground="LightCyan" Grid.RowSpan="2"/>
 
                                                 </Grid>
 
                                             </DataTemplate>
+                                                
                                         </ListView.ItemTemplate>
 
                                     </ListView>

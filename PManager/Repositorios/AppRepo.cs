@@ -136,7 +136,7 @@ namespace PManager.Repositorios
             return app;
         }
 
-        public List<AppModel> UpdateData()
+        public List<AppModel> UpdateData(int userId)
         {
             List<AppModel> appList = new List<AppModel>();
             AppModel app = null;
@@ -146,7 +146,8 @@ namespace PManager.Repositorios
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM APP JOIN UserApp USING(IDAPP)";
+                command.CommandText = "SELECT * FROM APP JOIN UserApp USING(IDAPP) WHERE idUser = @IDUSER";
+                command.Parameters.Add("@IDUSER", DbType.String).Value = userId;
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())

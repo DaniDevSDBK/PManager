@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PManager.Repositorios
+namespace PManager.Utils
 {
     public class PasswordGenerator
     {
@@ -16,18 +16,20 @@ namespace PManager.Repositorios
         private List<string> _SpecialCharacters = new List<string>();
         private List<string> _FinalList = new List<string>();
 
-        public PasswordGenerator() {
-        
+        public PasswordGenerator()
+        {
+
         }
-        public PasswordGenerator(List<string>conditions) {
-        
+        public PasswordGenerator(List<string> conditions)
+        {
+
             Password = GenPassword(conditions);
         }
 
-        private string GenPassword(List<string>conditions)
+        private string GenPassword(List<string> conditions)
         {
 
-            Random random= new Random();
+            Random random = new Random();
 
             //  -->Length
             //  -->Quantity Of Numbers
@@ -36,43 +38,43 @@ namespace PManager.Repositorios
             //  -->Special Characteres
 
             //Length
-            StringBuilder pwd = new StringBuilder(Int32.Parse(conditions[0].ToString()));
+            StringBuilder pwd = new StringBuilder(int.Parse(conditions[0].ToString()));
 
             //Quantity Of Numbers
-            if (Int32.Parse(conditions[1].ToString()) != 0)
+            if (int.Parse(conditions[1].ToString()) != 0)
             {
                 FillList(1);
 
-                FillFinalList(Int32.Parse(conditions[1].ToString()),_Numbers);
+                FillFinalList(int.Parse(conditions[1].ToString()), _Numbers);
             }
 
             //Capitals Numbers
-            if (Int32.Parse(conditions[2].ToString()) != 0)
+            if (int.Parse(conditions[2].ToString()) != 0)
             {
                 FillList(2);
 
-                FillFinalList(Int32.Parse(conditions[0].ToString()) - Int32.Parse(conditions[1].ToString())- Int32.Parse(conditions[3].ToString()), _Capitals);
+                FillFinalList(int.Parse(conditions[0].ToString()) - int.Parse(conditions[1].ToString()) - int.Parse(conditions[3].ToString()), _Capitals);
             }
 
             //Lower Case Numbers
-            if (Int32.Parse(conditions[3].ToString()) != 0)
+            if (int.Parse(conditions[3].ToString()) != 0)
             {
                 FillList(3);
 
-                FillFinalList(Int32.Parse(conditions[0].ToString()) - Int32.Parse(conditions[1].ToString()) - Int32.Parse(conditions[2].ToString()), _LowerCase);
+                FillFinalList(int.Parse(conditions[0].ToString()) - int.Parse(conditions[1].ToString()) - int.Parse(conditions[2].ToString()), _LowerCase);
 
             }
 
             //Special Characters
-            if (Boolean.Parse(conditions[4].ToString()))
+            if (bool.Parse(conditions[4].ToString()))
             {
                 FillList(0);
 
-                FillFinalList(Int32.Parse(conditions[0].ToString()) - Int32.Parse(conditions[1].ToString()) - Int32.Parse(conditions[2].ToString()) - Int32.Parse(conditions[3].ToString()), _SpecialCharacters);
+                FillFinalList(int.Parse(conditions[0].ToString()) - int.Parse(conditions[1].ToString()) - int.Parse(conditions[2].ToString()) - int.Parse(conditions[3].ToString()), _SpecialCharacters);
             }
 
             //Random OrderBy
-            foreach (var item in _FinalList.OrderBy(_=>random.Next()).ToList())
+            foreach (var item in _FinalList.OrderBy(_ => random.Next()).ToList())
             {
 
                 pwd.Append(item.ToString());
@@ -92,7 +94,7 @@ namespace PManager.Repositorios
                     for (int i = 32; i < 48; i++)
                     {
 
-                       _SpecialCharacters.Add(""+(char)i);
+                        _SpecialCharacters.Add("" + (char)i);
                     }
 
                     for (int i = 58; i < 65; i++)
@@ -169,7 +171,7 @@ namespace PManager.Repositorios
         private int GenRandom(int min, int max)
         {
 
-            Random random= new Random();
+            Random random = new Random();
 
             return random.Next(min, max);
         }

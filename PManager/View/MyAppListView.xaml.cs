@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PManager.Repositorios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,12 @@ namespace PManager.View
     /// </summary>
     public partial class MyAppListView : UserControl
     {
+
+        private UserContext user = UserContext.Instance;
+
         public MyAppListView()
         {
             InitializeComponent();
         }
-
     }
 }

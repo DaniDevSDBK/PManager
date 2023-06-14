@@ -4,6 +4,7 @@ using PManager.View.NavigationService.NavigationService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Principal;
 using System.Text;
@@ -67,8 +68,9 @@ namespace PManager.ViewModel
         }
         private void ExecLoginCmd(object obj)
         {
+            var txtP = SecureStringToString(Password);
 
-            var isValidUser = BCrypt.Net.BCrypt.Verify(Password.ToString(), uRepos.GetByEmail(UserName).Password);
+            var isValidUser = BCrypt.Net.BCrypt.Verify(txtP, uRepos.GetByEmail(UserName).Password);
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(userName), null);
@@ -84,6 +86,20 @@ namespace PManager.ViewModel
         private void ExecRegisterCommand(object obj)
         {
             nService.ShowRegisterView();
+        }
+
+        private string SecureStringToString(SecureString secureString)
+        {
+            IntPtr unmanagedString = IntPtr.Zero;
+            try
+            {
+                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(secureString);
+                return Marshal.PtrToStringUni(unmanagedString);
+            }
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+            }
         }
 
     }

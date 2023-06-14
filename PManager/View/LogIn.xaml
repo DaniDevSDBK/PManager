@@ -151,7 +151,7 @@
             <StackPanel Width="250" 
                         Grid.Row="2" 
                         Orientation="Vertical" 
-                        Margin="0,35,0,0">
+                        Margin="0,5,0,0">
 
                 <Border CornerRadius="25" 
                         BorderThickness="3"
@@ -164,6 +164,13 @@
                     
                 </Border>
 
+                <TextBlock Text="KeyVault"  
+                           Foreground="#003366"
+                           FontSize="20"
+                           FontFamily="Open Sans"
+                           Margin="10"
+                           HorizontalAlignment="Center"/>
+                
                 <TextBlock Text="All in one, one for all."  
                            Foreground="White" 
                            FontWeight="Medium" 
@@ -176,7 +183,7 @@
                            FontFamily="Arial" 
                            TextWrapping="Wrap" 
                            TextAlignment="Left" 
-                           Margin="0,35,0,0" 
+                           Margin="0,15,0,0" 
                            Height="11" 
                            Width="198"/>
 
@@ -201,7 +208,7 @@
                            FontFamily="Arial" 
                            TextWrapping="Wrap" 
                            TextAlignment="Left" 
-                           Margin="0,35,0,0" 
+                           Margin="0,15,0,0" 
                            Height="11" 
                            Width="198"/>
 
@@ -262,7 +269,7 @@
                         Cursor="Hand" 
                         Height="28"
                         ToolTip="Click to Open the Register form"
-                        Margin="0,20,0,0">
+                        Margin="0,5,0,0">
 
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -313,6 +320,13 @@
                                Margin="8,0,0,0"/>
 
                 </StackPanel>
+
+                <TextBlock Text="{Binding ErrorMessage}"  
+                           Foreground="Red" 
+                           FontWeight="Medium" 
+                           FontFamily="Arial" 
+                           HorizontalAlignment="Center" 
+                           Margin="8,0,0,0"/>
 
             </StackPanel>
         </Grid>

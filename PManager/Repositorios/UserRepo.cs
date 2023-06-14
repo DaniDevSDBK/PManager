@@ -10,9 +10,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PManager.Repositorios
@@ -26,10 +28,11 @@ namespace PManager.Repositorios
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO USER (name, email, password) VALUES ( @name, @email, @password );";
+                command.CommandText = "INSERT INTO USER (name, email, password, profile_picture) VALUES ( @name, @email, @password, @picture );";
                 command.Parameters.AddWithValue("@name", userModel.Name);
                 command.Parameters.AddWithValue("@email", userModel.Email);
                 command.Parameters.AddWithValue("@password", userModel.Password);
+                command.Parameters.AddWithValue("@picture", userModel.ProfilePicture);
                 command.ExecuteNonQuery();
                 connection.Close();
             }
@@ -189,6 +192,7 @@ namespace PManager.Repositorios
                             Id = Int32.Parse(reader[0].ToString()),
                             UserName = reader[1].ToString(),
                             Name = reader[1].ToString(),
+                            Password = reader[3].ToString(),
                             Email = reader[2].ToString(),
                             ProfilePicture = (byte[])reader[4],
                         };
@@ -246,6 +250,40 @@ namespace PManager.Repositorios
             user.Wait();
 
             return user.Result;
+        }
+
+        internal bool DeleteUserApp(string userAppName, string userAppPassword)
+        {
+            var deleted = false;
+
+            try
+            {
+
+                Task.Run(() =>
+                {
+
+                    using (var connection = new SQLiteConnection(GetConecction()))
+                    using (var command = new SQLiteCommand())
+                    {
+                        connection.Open();
+                        command.Connection = connection;
+                        command.CommandText = "DELETE FROM UserApp WHERE userAppName = @USERNAME AND userAppPassword = @USERPWD;";
+                        command.Parameters.Add("@USERNAME", DbType.String).Value = userAppName;
+                        command.Parameters.Add("@USERPWD", DbType.String).Value = userAppPassword;
+                        command.ExecuteNonQuery();
+                    }
+
+                    deleted = true;
+
+                });
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return deleted;
         }
     }
 }
