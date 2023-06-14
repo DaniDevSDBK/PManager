@@ -1,6 +1,9 @@
-﻿using PManager.Model;
+﻿using Google.Protobuf.WellKnownTypes;
+using PManager.Model;
 using PManager.Repositorios;
+using PManager.Utils;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -84,37 +87,11 @@ namespace PManager.ViewModel
                     BackUp = File.ReadAllBytes(sqliteBackupPath)
                 };
 
-                InsertSuscribtor(user);
+                UserApiService.InsertSuscribtor(user);
+                _currentUserAccount.CurrentUser.SessionToken = UserApiService.LogIn(_currentUserAccount.CurrentUser.Email, _currentUserAccount.CurrentUser.Password).Result??String.Empty;
             }
             catch { }
         }
 
-        private async Task InsertSuscribtor(UserApiModel user)
-        {
-
-            // Crear una instancia de HttpClient
-            var httpClient = new HttpClient();
-
-            // URL del endpoint de registro
-            var url = "https://localhost:443/User/register";
-
-            // Realizar la solicitud POST
-            var response = await httpClient.PostAsJsonAsync(url, user);
-
-            // Verificar si la solicitud fue exitosa
-            if (response.IsSuccessStatusCode)
-            {
-                // Obtener la respuesta como texto
-                var responseContent = await response.Content.ReadAsStringAsync();
-
-                // Mostrar la respuesta en la consola
-                Console.WriteLine(responseContent);
-            }
-            else
-            {
-                // La solicitud no fue exitosa, mostrar el código de estado
-                Console.WriteLine("Error en la solicitud: " + response.StatusCode);
-            }
-        }
     }
 }

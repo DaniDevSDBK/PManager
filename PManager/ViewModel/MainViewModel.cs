@@ -1,16 +1,23 @@
 ﻿using FontAwesome.Sharp;
 using PManager.Model;
 using PManager.Repositorios;
+using System.Collections.Generic;
+using System;
 using System.IO;
+using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Net.Http.Json;
+using PManager.Utils;
 
 namespace PManager.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        private readonly HttpClient httpClient;
         private UserAccountModel currentUserAccount;
         private BaseViewModel currentChildView;
         private string _currentWindowTittle;
@@ -107,6 +114,11 @@ namespace PManager.ViewModel
 
                 _currentUser.CurrentUser = currentUserAccount;
 
+                if (_currentUser.CurrentUser.IsSuscribed)
+                {
+                    _currentUser.CurrentUser.SessionToken = UserApiService.LogIn(user.Email, user.Password).Result ?? String.Empty;
+                }
+
             }
             else
             {
@@ -127,7 +139,6 @@ namespace PManager.ViewModel
 
             return image;
         }
-
     }
 }
 

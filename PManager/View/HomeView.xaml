@@ -7,11 +7,38 @@
              xmlns:viewModel="clr-namespace:PManager.ViewModel" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-
+    
+    <UserControl.DataContext>
+        <viewModel:HomeViewModel/>
+    </UserControl.DataContext>
+    
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary>
+                    <Style x:Key="btnCalendarStyle" TargetType="Button">
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Padding" Value="5" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="1"
+                                        Width="40"
+                                        Height="40"
+                                        CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -22,9 +49,116 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="0"
-                Margin="30,30,30,30"
-                Style="{StaticResource btnStyle}"/>
+        <ItemsControl ItemsSource="{Binding NewsItems}" Grid.Column="0">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="WhiteSmoke" Background="DarkBlue" BorderThickness="1" Margin="10" Padding="10">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <EventTrigger RoutedEvent="Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation From="0" To="1" Duration="0:0:1" Storyboard.TargetProperty="Opacity" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Grid>
+                            <!-- Contenido de la tarjeta de noticia -->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" Foreground="LightCyan"/>
+                            <TextBlock Text="{Binding Date}" FontSize="14" Grid.Row="1" Foreground="LightCyan"/>
+                            <Image Source="{Binding ImageUrl}" Width="200" Height="150" Grid.Row="2"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Grid Background="DarkBlue" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Mi Calendario" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,0" Foreground="White"/>
+
+            <Grid Grid.Row="1" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Botones de navegación -->
+                <Button x:Name="PreviousMonthButton" Grid.Row="0" Grid.Column="0" Content="&#x25C4;" FontSize="18" FontWeight="Bold"
+                Background="Transparent" BorderBrush="Transparent" Foreground="White"
+                Command="{Binding PreviousMonthCommand}" />
+                <TextBlock x:Name="CurrentMonthTextBlock" Grid.Row="0" Grid.Column="1" FontSize="20" FontWeight="Bold" Foreground="White"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding CurrentMonthYear, StringFormat='dd/MM/yyyy hh:mm tt'}"/>
+                <Button x:Name="NextMonthButton" Grid.Row="0" Grid.Column="2" Content="&#x25BA;" FontSize="18" FontWeight="Bold"
+                Background="Transparent" BorderBrush="Transparent" Foreground="White"
+                Command="{Binding NextMonthCommand}" />
+
+                <!-- Calendario -->
+                <Grid x:Name="CalendarGrid" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,20,0,0" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Días de la semana -->
+                    <TextBlock Text="Lun" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Foreground="LightGreen" />
+                    <TextBlock Text="Mar" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Foreground="LightGreen" />
+                    <TextBlock Text="Mié" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Foreground="LightGreen" />
+                    <TextBlock Text="Jue" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Foreground="LightGreen" />
+                    <TextBlock Text="Vie" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" Foreground="LightGreen" />
+                    <TextBlock Text="Sáb" Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" Foreground="LightGreen" />
+                    <TextBlock Text="Dom" Grid.Column="6" Grid.Row="0" HorizontalAlignment="Center" Foreground="LightGreen" />
+
+                    <!-- Días del mes -->
+                    <ItemsControl Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="7" ItemsSource="{Binding DaysOfMonth}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="7" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding}" Margin="0,15,0,0" Background="Transparent" BorderBrush="White" Foreground="LightCyan"
+                                Command="{Binding DataContext.DaySelectedCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                CommandParameter="{Binding}" Style="{StaticResource btnCalendarStyle}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </Grid>
+        </Grid>
+
     </Grid>
     
 </UserControl>

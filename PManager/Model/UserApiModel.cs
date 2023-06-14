@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PManager.Model
 {
-    class UserApiModel
+    public class UserApiModel
     {
 
         public int Id { get; set; }
