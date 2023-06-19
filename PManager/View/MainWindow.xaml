@@ -35,12 +35,23 @@
         <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
             <local:SettingsView/>
         </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type viewModel:SuscriptionViewModel}">
             <local:SuscriptionView/>
         </DataTemplate>
 
     </Window.Resources>
+
+    <Window.InputBindings>
+
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding ShowHomeViewCommand}"/>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ShowAddAppViewCommand}"/>
+        <KeyBinding Key="L" Modifiers="Ctrl" Command="{Binding ShowMyAppListViewCommand}"/>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding ShowSettingsViewCommand}"/>
+        <KeyBinding Key="P" Modifiers="Ctrl" Command="{Binding ShowSuscriptionViewCommand}"/>
+        <KeyBinding Key="F1" Command="{Binding ShowAddAppViewCommand}"/>
+
+    </Window.InputBindings>
 
     <Border CornerRadius="25" BorderThickness="5" >
 
@@ -102,7 +113,7 @@
                         <!--MenuButtons-->
                         <!--btnHome-->
                         <RadioButton x:Name="btnHome" 
-                                     IsChecked="True"
+                                     IsChecked="{Binding IsHomeViewSelected}"
                                      Style="{StaticResource menuButton}"
                                      Tag="{StaticResource BorderColor1}"
                                      Command="{Binding ShowHomeViewCommand}">
@@ -117,6 +128,7 @@
 
                         <!--btnNewAppForm-->
                         <RadioButton x:Name="btnHome1"
+                                     IsChecked="{Binding IsAddAppViewSelected}"
                                      Style="{StaticResource menuButton}"
                                      Tag="{StaticResource BorderColor1}"
                                      Command="{Binding ShowAddAppViewCommand}">
@@ -131,6 +143,7 @@
 
                         <!--btnAppList-->
                         <RadioButton x:Name="btnHome2" 
+                                     IsChecked="{Binding IsMyAppListViewSelected}"
                                      Style="{StaticResource menuButton}"
                                      Tag="{StaticResource BorderColor1}"
                                      Command="{Binding ShowMyAppListViewCommand}">
@@ -145,6 +158,7 @@
 
                         <!--btnSettings-->
                         <RadioButton x:Name="btnHome3" 
+                                     IsChecked="{Binding IsSettingsViewSelected}"
                                      Style="{StaticResource menuButton}"
                                      Tag="{StaticResource BorderColor1}"
                                      Command="{Binding ShowSettingsViewCommand}">
@@ -157,8 +171,9 @@
                             </StackPanel>
                         </RadioButton>
 
-                        <!--btnSettings-->
-                        <RadioButton x:Name="btnHome4" 
+                        <!--btnSuscription-->
+                        <RadioButton x:Name="btnHome4"
+                                     IsChecked="{Binding IsSuscriptionViewSelected}"
                                      Style="{StaticResource menuButton}"
                                      Tag="{StaticResource BorderColor1}"
                                      Command="{Binding ShowSuscriptionViewCommand}">

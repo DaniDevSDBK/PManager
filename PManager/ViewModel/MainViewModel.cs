@@ -1,17 +1,14 @@
 ﻿using FontAwesome.Sharp;
 using PManager.Model;
 using PManager.Repositorios;
-using System.Collections.Generic;
+using PManager.Utils;
 using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.Net.Http.Json;
-using PManager.Utils;
 
 namespace PManager.ViewModel
 {
@@ -32,6 +29,64 @@ namespace PManager.ViewModel
 
         //Propiedad ChildView
         public BaseViewModel CurrentChildView { get => currentChildView; set { currentChildView = value; OnPropertyChanged(nameof(CurrentChildView)); } }
+
+        //RadioButton IsChecked
+        #region RadioButtons IsChecked
+        private bool _isHomeViewSelected;
+        public bool IsHomeViewSelected
+        {
+            get { return _isHomeViewSelected; }
+            set
+            {
+                _isHomeViewSelected = value;
+                OnPropertyChanged(nameof(IsHomeViewSelected));
+            }
+        }
+
+        private bool _isAddAppViewSelected;
+        public bool IsAddAppViewSelected
+        {
+            get { return _isAddAppViewSelected; }
+            set
+            {
+                _isAddAppViewSelected = value;
+                OnPropertyChanged(nameof(IsAddAppViewSelected));
+            }
+        }
+
+        private bool _isMyAppListViewSelected;
+        public bool IsMyAppListViewSelected
+        {
+            get { return _isMyAppListViewSelected; }
+            set
+            {
+                _isMyAppListViewSelected = value;
+                OnPropertyChanged(nameof(IsMyAppListViewSelected));
+            }
+        }
+
+        private bool _isSettingsViewSelected;
+        public bool IsSettingsViewSelected
+        {
+            get { return _isSettingsViewSelected; }
+            set
+            {
+                _isSettingsViewSelected = value;
+                OnPropertyChanged(nameof(IsSettingsViewSelected));
+            }
+        }
+
+        private bool _isSuscriptionViewSelected;
+        public bool IsSuscriptionViewSelected
+        {
+            get { return _isSuscriptionViewSelected; }
+            set
+            {
+                _isSuscriptionViewSelected = value;
+                OnPropertyChanged(nameof(IsSuscriptionViewSelected));
+            }
+        }
+        #endregion
 
         //Commands
         public ICommand ShowHomeViewCommand { get; }
@@ -59,39 +114,44 @@ namespace PManager.ViewModel
 
         }
 
-        private void ExecShowSuscriptionViewCommand(object obj)
+        public void ExecShowSuscriptionViewCommand(object obj)
         {
             CurrentChildView = new SuscriptionViewModel();
             CurrentWindowTittle = "Suscription";
             IconView = IconChar.Paypal;
+            IsSuscriptionViewSelected = true;
         }
 
-        private void ExecShowSettingsViewCommand(object obj)
+        public void ExecShowSettingsViewCommand(object obj)
         {
             CurrentChildView = new SettingsViewModel();
             CurrentWindowTittle = "Settings";
             IconView = IconChar.Tools;
+            IsSettingsViewSelected = true;
         }
 
-        private void ExecuteShowAppListViewCommand(object obj)
+        public void ExecuteShowAppListViewCommand(object obj)
         {
             CurrentChildView = new MyAppListViewModel();
             CurrentWindowTittle = "My List";
             IconView = IconChar.List;
+            IsMyAppListViewSelected = true;
         }
 
-        private void ExecuteShowAddAppViewCommand(object obj)
+        public void ExecuteShowAddAppViewCommand(object obj)
         {
             CurrentChildView = new AddAppViewModel();
             CurrentWindowTittle = "Add New App";
             IconView = IconChar.AppStore;
+            IsAddAppViewSelected = true;
         }
 
-        private void ExecuteShowHomeViewCommand(object obj)
+        public void ExecuteShowHomeViewCommand(object obj)
         {
             CurrentChildView = new HomeViewModel();
             CurrentWindowTittle = "Home";
             IconView = IconChar.Home;
+            IsHomeViewSelected = true;
         }
 
         private void LoadCurrentUserData()

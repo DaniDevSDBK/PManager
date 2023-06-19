@@ -1,21 +1,11 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using MySqlConnector;
-using PManager.Model;
+﻿using PManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PManager.Repositorios
 {
@@ -58,7 +48,7 @@ namespace PManager.Repositorios
 
         public bool AuthenticateUser(NetworkCredential credential)
         {
-            bool validUser= false;
+            bool validUser = false;
 
             using (var connection = new SQLiteConnection(GetConecction()))
             using (var command = new SQLiteCommand())
@@ -233,7 +223,7 @@ namespace PManager.Repositorios
 
                     suscribed = true;
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     throw;
                 }
