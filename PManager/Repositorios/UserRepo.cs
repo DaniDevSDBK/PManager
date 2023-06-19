@@ -11,6 +11,31 @@ namespace PManager.Repositorios
 {
     public class UserRepo : RepositorioBase, UIRepositable
     {
+        public string GetUserPrivateKey(int userId)
+        {
+            var privateKey = "";
+
+            using (var connection = new SQLiteConnection("tu_cadena_de_conexion"))
+            {
+                connection.Open();
+
+                using (var command = new SQLiteCommand("SELECT PrivateKey FROM User WHERE idUser = @UserId", connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", userId);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            privateKey = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+
+            return privateKey;
+        }
+
         public void Add(UserModel userModel)
         {
             using (var connection = new SQLiteConnection(GetConecction()))

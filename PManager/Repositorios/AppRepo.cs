@@ -160,23 +160,32 @@ namespace PManager.Repositorios
                             AppPassword = reader[4].ToString(),
                         };
 
-                        using (var connection2 = new SQLiteConnection(GetConecction()))
-                        using (var command2 = new SQLiteCommand())
+                        try
                         {
-                            connection2.Open();
-                            command2.Connection = connection2;
-                            command2.CommandText = "SELECT COUNT(*) FROM APP JOIN UserApp USING(IDAPP) WHERE NAME='" + app.AppName+"'";
-                            using (var readerSub = command2.ExecuteReader())
+                            using (var connection2 = new SQLiteConnection(GetConecction()))
+                            using (var command2 = new SQLiteCommand())
                             {
-
-                                while (readerSub.Read())
+                                connection2.Open();
+                                command2.Connection = connection2;
+                                command2.CommandText = "SELECT COUNT(*) FROM UserApp JOIN APP USING(IDAPP) WHERE NAME=@APPNAME AND idUser=@IDUSER";
+                                command2.Parameters.Add("@IDUSER", DbType.String).Value = userId;
+                                command2.Parameters.Add("@APPNAME", DbType.String).Value = app.AppName;
+                                using (var readerSub = command2.ExecuteReader())
                                 {
-                                    app.UsersNumber = Int32.Parse(readerSub[0].ToString());
-                                    app.PasswordsNumber = Int32.Parse(readerSub[0].ToString());
 
+                                    while (readerSub.Read())
+                                    {
+                                        app.UsersNumber = Int32.Parse(readerSub[0].ToString());
+                                        app.PasswordsNumber = Int32.Parse(readerSub[0].ToString());
+
+                                    }
                                 }
+
                             }
 
+                        }catch
+                        {
+                            throw;
                         }
                             
                         appList.Add(app);

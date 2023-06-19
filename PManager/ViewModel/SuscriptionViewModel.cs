@@ -1,26 +1,21 @@
-﻿using Google.Protobuf.WellKnownTypes;
-using PManager.Model;
+﻿using PManager.Model;
 using PManager.Repositorios;
 using PManager.Utils;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PManager.ViewModel
 {
-    public class SuscriptionViewModel:BaseViewModel
+    public class SuscriptionViewModel : BaseViewModel
     {
 
         private static UserContext _currentUserAccount = UserContext.Instance;
         private UserRepo _userRepo = new UserRepo();
         private string message;
 
-        public string Message 
+        public string Message
         {
             get { return message; }
             set
@@ -88,7 +83,7 @@ namespace PManager.ViewModel
                 };
 
                 UserApiService.InsertSuscribtor(user);
-                _currentUserAccount.CurrentUser.SessionToken = UserApiService.LogIn(_currentUserAccount.CurrentUser.Email, _currentUserAccount.CurrentUser.Password).Result??String.Empty;
+                _currentUserAccount.CurrentUser.SessionToken = UserApiService.LogIn(_currentUserAccount.CurrentUser.Email, _currentUserAccount.CurrentUser.Password).Result ?? String.Empty;
             }
             catch { }
         }

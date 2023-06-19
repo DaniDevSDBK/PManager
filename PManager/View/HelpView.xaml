@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="PManager.View.HelpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PManager.View"
+             xmlns:viewModel="clr-namespace:PManager.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <viewModel:HelpViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <!-- Estilo para el texto principal -->
+        <Style TargetType="TextBlock" x:Key="MainTextBlockStyle">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,10" />
+            <Setter Property="Foreground" Value="Bisque" />
+        </Style>
+        <!-- Estilo para los atajos de teclado -->
+        <Style TargetType="TextBlock" x:Key="ShortcutTextBlockStyle">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="Foreground" Value="LightCyan" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </UserControl.Resources>
+
+    <Border Background="DarkBlue" BorderThickness="3" BorderBrush="WhiteSmoke" CornerRadius="2">
+        <Grid>
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            
+            <StackPanel Margin="20" Grid.Row="0">
+                <TextBlock Text="Ayuda de KeyVault" Style="{StaticResource MainTextBlockStyle}" FontWeight="Bold" />
+
+                <TextBlock Style="{StaticResource MainTextBlockStyle}">
+                    ¡Bienvenido a KeyVault!
+                    <LineBreak/>
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource ShortcutTextBlockStyle}">
+                    Bienvenido a KeyVault, tu gestor de contraseñas seguro y confiable. Almacena y protege todas tus contraseñas en un solo lugar, generando contraseñas seguras y accediendo rápidamente a tus cuentas. Navega fácilmente con atajos de teclado y mantén tus contraseñas protegidas con encriptación avanzada. Olvídate de las contraseñas olvidadas y los problemas de seguridad. 
+                    <LineBreak/>
+                    Descubre una experiencia segura y sin preocupaciones con KeyVault!
+                    <LineBreak/>
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource MainTextBlockStyle}">
+                    <LineBreak/>
+                    Aquí tienes algunas instrucciones para ayudarte a navegar por la aplicación:
+                </TextBlock>
+
+                <TextBlock Text="Shortcuts:" Style="{StaticResource MainTextBlockStyle}" />
+                <TextBlock Text="Ctrl + H: Mostrar la vista de inicio (Home)" Style="{StaticResource ShortcutTextBlockStyle}" />
+                <TextBlock Text="Ctrl + N: Mostrar la vista de agregar una nueva aplicación (New App)" Style="{StaticResource ShortcutTextBlockStyle}" />
+                <TextBlock Text="Ctrl + L: Mostrar la lista de mis aplicaciones (App List)" Style="{StaticResource ShortcutTextBlockStyle}" />
+                <TextBlock Text="Ctrl + S: Mostrar la vista de configuración (Settings)" Style="{StaticResource ShortcutTextBlockStyle}" />
+                <TextBlock Text="Ctrl + P: Mostrar la vista de suscripción (Suscription)" Style="{StaticResource ShortcutTextBlockStyle}" />
+                
+                <TextBlock Margin="10" Text="F1: Mostrar la ventana de Ayuda" Style="{StaticResource ShortcutTextBlockStyle}" />
+
+                
+            </StackPanel>
+
+            <Separator Background="WhiteSmoke" Grid.Row="1" Margin="10"/>
+
+            <StackPanel  Orientation="Horizontal" Grid.Row="2" Margin="20, 20,20,20">
+
+                <TextBlock Foreground="WhiteSmoke" Background="Transparent" Margin="0,0,30,0">
+                                                    <Bold>Developers Information</Bold>
+                <LineBreak/>
+                <LineBreak/>
+                    - You can find me on <Hyperlink x:Name="GitHub" NavigateUri="https://github.com/DaniDevSDBK" RequestNavigate="Hyperlink_RequestNavigate" Foreground="Yellow">GitHub</Hyperlink>
+                <LineBreak/>
+
+                </TextBlock>
+
+                <TextBlock Foreground="WhiteSmoke" Background="Transparent">
+                
+                <LineBreak/>
+                <LineBreak/>
+                    - Or write me to <Hyperlink NavigateUri="" Foreground="Yellow">example@gmail.com</Hyperlink>
+                <LineBreak/>
+
+                </TextBlock>
+
+            </StackPanel>
+
+        </Grid>
+    </Border>
+
+</UserControl>

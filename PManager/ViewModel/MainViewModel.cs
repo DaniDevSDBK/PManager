@@ -86,6 +86,17 @@ namespace PManager.ViewModel
                 OnPropertyChanged(nameof(IsSuscriptionViewSelected));
             }
         }
+        
+        private bool _isHelpViewSelected;
+        public bool IsHelpViewSelected
+        {
+            get { return _isHelpViewSelected; }
+            set
+            {
+                _isHelpViewSelected = value;
+                OnPropertyChanged(nameof(IsHelpViewSelected));
+            }
+        }
         #endregion
 
         //Commands
@@ -95,6 +106,7 @@ namespace PManager.ViewModel
         public ICommand ShowSettingsViewCommand { get; }
         public ICommand ShowLogInViewCommand { get; }
         public ICommand ShowSuscriptionViewCommand { get; }
+        public ICommand ShowHelpViewCommand { get; }
 
         public MainViewModel()
         {
@@ -106,12 +118,22 @@ namespace PManager.ViewModel
             ShowMyAppListViewCommand = new RelayCommand(ExecuteShowAppListViewCommand);
             ShowSettingsViewCommand = new RelayCommand(ExecShowSettingsViewCommand);
             ShowSuscriptionViewCommand = new RelayCommand(ExecShowSuscriptionViewCommand);
+            ShowHelpViewCommand = new RelayCommand(ExecHelpViewCommand);
 
             CurrentChildView = new HomeViewModel();
+            IsHomeViewSelected = true;
 
             //Default view
             LoadCurrentUserData();
 
+        }
+
+        public void ExecHelpViewCommand(object obj)
+        {
+            CurrentChildView = new HelpViewModel();
+            CurrentWindowTittle = "Help";
+            IconView = IconChar.Info;
+            IsHelpViewSelected = true;
         }
 
         public void ExecShowSuscriptionViewCommand(object obj)
@@ -182,9 +204,10 @@ namespace PManager.ViewModel
             }
             else
             {
-                MessageBox.Show("Invalid User, not logged in");
+                MessageBox.Show("*Invalid User, not logged in*");
                 Application.Current.Shutdown();
             }
+
         }
 
         private BitmapImage ByteArrayToBitmapImage(byte[] byteArray)

@@ -39,6 +39,10 @@
         <DataTemplate DataType="{x:Type viewModel:SuscriptionViewModel}">
             <local:SuscriptionView/>
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:HelpViewModel}">
+            <local:HelpView/>
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -49,7 +53,7 @@
         <KeyBinding Key="L" Modifiers="Ctrl" Command="{Binding ShowMyAppListViewCommand}"/>
         <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding ShowSettingsViewCommand}"/>
         <KeyBinding Key="P" Modifiers="Ctrl" Command="{Binding ShowSuscriptionViewCommand}"/>
-        <KeyBinding Key="F1" Command="{Binding ShowAddAppViewCommand}"/>
+        <KeyBinding Key="F1" Command="{Binding ShowHelpViewCommand}"/>
 
     </Window.InputBindings>
 
@@ -127,7 +131,7 @@
                         </RadioButton>
 
                         <!--btnNewAppForm-->
-                        <RadioButton x:Name="btnHome1"
+                        <RadioButton x:Name="btnNewAppForm"
                                      IsChecked="{Binding IsAddAppViewSelected}"
                                      Style="{StaticResource menuButton}"
                                      Tag="{StaticResource BorderColor1}"
@@ -142,7 +146,7 @@
                         </RadioButton>
 
                         <!--btnAppList-->
-                        <RadioButton x:Name="btnHome2" 
+                        <RadioButton x:Name="btnAppList" 
                                      IsChecked="{Binding IsMyAppListViewSelected}"
                                      Style="{StaticResource menuButton}"
                                      Tag="{StaticResource BorderColor1}"
@@ -157,7 +161,7 @@
                         </RadioButton>
 
                         <!--btnSettings-->
-                        <RadioButton x:Name="btnHome3" 
+                        <RadioButton x:Name="btnSettings" 
                                      IsChecked="{Binding IsSettingsViewSelected}"
                                      Style="{StaticResource menuButton}"
                                      Tag="{StaticResource BorderColor1}"
@@ -172,7 +176,7 @@
                         </RadioButton>
 
                         <!--btnSuscription-->
-                        <RadioButton x:Name="btnHome4"
+                        <RadioButton x:Name="btnSuscription"
                                      IsChecked="{Binding IsSuscriptionViewSelected}"
                                      Style="{StaticResource menuButton}"
                                      Tag="{StaticResource BorderColor1}"
@@ -182,6 +186,21 @@
 
                                 <fa:IconImage Icon="Paypal" Margin="10,0,0,0" Style="{StaticResource btnIcon}" Foreground="Cyan"/>
                                 <TextBlock Text="Suscription" Style="{StaticResource btnText}" Foreground="Cyan"/>
+
+                            </StackPanel>
+                        </RadioButton>
+                        
+                        <!--btnHelp-->
+                        <RadioButton x:Name="btnHelp"
+                                     IsChecked="{Binding IsHelpViewSelected}"
+                                     Style="{StaticResource menuButton}"
+                                     Tag="{StaticResource BorderColor1}"
+                                     Command="{Binding ShowHelpViewCommand}">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <fa:IconImage Icon="Info" Margin="10,0,0,0" Style="{StaticResource btnIcon}" Foreground="LimeGreen"/>
+                                <TextBlock Text="Help" Style="{StaticResource btnText}" Foreground="LimeGreen"/>
 
                             </StackPanel>
                         </RadioButton>
