@@ -12,6 +12,11 @@ using System.Windows.Media.Imaging;
 
 namespace PManager.ViewModel
 {
+    /// <summary>
+    /// View model principal utilizado para la vista principal de la aplicación.
+    /// Contiene propiedades y comandos que se utilizan para mostrar y controlar la interfaz de usuario principal.
+    /// Este view model es responsable de coordinar la interacción entre otras view models y la vista principal.
+    /// </summary>
     public class MainViewModel : BaseViewModel
     {
         private readonly HttpClient httpClient;

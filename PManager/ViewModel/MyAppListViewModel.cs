@@ -7,6 +7,11 @@ using System.Linq;
 
 namespace PManager.ViewModel
 {
+    /// <summary>
+    /// View model utilizado para representar los datos y la lógica relacionados con la lista de aplicaciones del usuario.
+    /// Contiene propiedades y comandos utilizados para mostrar y gestionar la lista de aplicaciones en la vista correspondiente.
+    /// Este view model se encarga de coordinar la interacción entre otros view models y la vista de la lista de aplicaciones.
+    /// </summary>
     public class MyAppListViewModel : BaseViewModel
     {
         private ObservableCollection<ExpanderViewModel> _items;

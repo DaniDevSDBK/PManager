@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace PManager.Utils
 {
-
+    /// <summary>
+    /// Clase que proporciona métodos para interactuar con un servicio de API de usuario.
+    /// </summary>
     public static class UserApiService
     {
         private static readonly HttpClient httpClient = new HttpClient();
@@ -18,12 +20,12 @@ namespace PManager.Utils
             httpClient.BaseAddress = new Uri("https://localhost/");
         }
 
-        public static async Task InsertSuscribtor(UserApiModel user)
+        /// <summary>
+        /// Inserta un suscriptor en el servicio de API de usuario.
+        /// </summary>
+        /// <param name="user">El objeto UserApiModel que representa el suscriptor.</param>
+        public static async Task InsertSubscriber(UserApiModel user)
         {
-
-            // Crear una instancia de HttpClient
-            var httpClient = new HttpClient();
-
             // URL del endpoint de registro
             var url = "https://localhost:443/User/register";
 
@@ -46,13 +48,19 @@ namespace PManager.Utils
             }
         }
 
+        /// <summary>
+        /// Inicia sesión en el servicio de API de usuario y devuelve el token de autenticación.
+        /// </summary>
+        /// <param name="email">El correo electrónico del usuario.</param>
+        /// <param name="password">La contraseña del usuario.</param>
+        /// <returns>El token de autenticación.</returns>
         public static async Task<string> LogIn(string email, string password)
         {
             var requestContent = new FormUrlEncodedContent(new[]
             {
-                new KeyValuePair<string, string>("email", email),
-                new KeyValuePair<string, string>("password", password)
-            });
+            new KeyValuePair<string, string>("email", email),
+            new KeyValuePair<string, string>("password", password)
+        });
 
             var response = await httpClient.PostAsync("User/logIn", requestContent);
             response.EnsureSuccessStatusCode();
@@ -61,6 +69,9 @@ namespace PManager.Utils
             return token;
         }
 
+        /// <summary>
+        /// Actualiza los datos del usuario en el servicio de API de usuario.
+        /// </summary>
         internal static void UpdateUser()
         {
             throw new NotImplementedException();

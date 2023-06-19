@@ -7,6 +7,11 @@ using System.Windows.Input;
 
 namespace PManager.ViewModel
 {
+    /// <summary>
+    /// View model utilizado para representar los datos y la lógica relacionados con el contenido de una aplicación.
+    /// Contiene propiedades y comandos utilizados para mostrar y gestionar el contenido específico de una aplicación en la vista correspondiente.
+    /// Este view model se encarga de coordinar la interacción entre otros view models y la vista de contenido de la aplicación.
+    /// </summary>
     public class ContentViewModel : BaseViewModel
     {
         private UserRepo userRepo = new UserRepo();

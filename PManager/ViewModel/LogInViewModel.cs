@@ -15,6 +15,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PManager.ViewModel
 {
+    /// <summary>
+    /// View model utilizado para representar los datos de inicio de sesión de un usuario en el formulario de inicio de sesión.
+    /// Contiene propiedades que representan los campos del formulario, como el correo electrónico y la contraseña.
+    /// Este view model se utiliza para recopilar los datos ingresados por el usuario y enviarlos al servicio de API de usuario para la autenticación.
+    /// </summary>
     public class LogInViewModel : BaseViewModel
     {
         private SecureString password;

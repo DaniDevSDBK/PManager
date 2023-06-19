@@ -11,6 +11,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PManager.ViewModel
 {
+    /// <summary>
+    /// View model utilizado para representar los datos y la lógica relacionados con la adición de una nueva aplicación.
+    /// Contiene propiedades y comandos utilizados en el formulario de adición de aplicaciones.
+    /// Este view model se encarga de recopilar los datos ingresados por el usuario y realizar las acciones necesarias para agregar una nueva aplicación.
+    /// </summary>
     public class AddAppViewModel : BaseViewModel
     {
         //

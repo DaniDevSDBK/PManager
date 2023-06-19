@@ -7,6 +7,13 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Img\KeyVault.ico</ApplicationIcon>
     <PackageIcon>KeyVault.png</PackageIcon>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <SignAssembly>False</SignAssembly>
+    <AssemblyOriginatorKeyFile>KeyVault</AssemblyOriginatorKeyFile>
+    <PackageId>KeyVault</PackageId>
+    <Authors>KeyVault</Authors>
+    <Company>Daniel Caballero Rubiato</Company>
+    <Product>KeyVault</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -15,6 +22,7 @@
 
   <ItemGroup>
     <None Remove="Data\pm.db" />
+    <None Remove="Data\pm.db.sql" />
     <None Remove="Img\UserProfileDefaultPicture.png" />
     <None Remove="Repositorios\jog4jxtq.xwr~" />
     <None Remove="Repositorios\pm.db" />
@@ -41,6 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Data\pm.db.sql" />
     <Resource Include="Img\KeyVault.png" />
     <Resource Include="Img\UserProfileDefaultPicture.png" />
   </ItemGroup>

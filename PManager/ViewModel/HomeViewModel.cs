@@ -1,11 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -13,7 +9,12 @@ namespace PManager.ViewModel
 {
     //https://newsapi.org/v2/everything?q=cybersecurity&apiKey=61b9f93e91d84003837ff300f31a6d09
 
-    public class HomeViewModel:BaseViewModel
+    /// <summary>
+    /// View model utilizado para representar los datos y la lógica relacionados con la vista de inicio de la aplicación.
+    /// Contiene propiedades y comandos utilizados en la vista de inicio para mostrar y gestionar los elementos principales de la aplicación.
+    /// Este view model se encarga de coordinar las interacciones entre otros view models y la vista de inicio.
+    /// </summary>
+    public class HomeViewModel : BaseViewModel
     {
         private const string ApiKey = "61b9f93e91d84003837ff300f31a6d09";
         private const string ApiUrl = "https://newsapi.org/v2/everything";
@@ -76,7 +77,7 @@ namespace PManager.ViewModel
         public HomeViewModel()
         {
             DaysOfMonth = new ObservableCollection<int>();
-            NewsItems = new ObservableCollection<NewsItem>(); 
+            NewsItems = new ObservableCollection<NewsItem>();
 
             IsCurrentDay = (CurrentDate.Date == DateTime.Today);
 
@@ -133,7 +134,7 @@ namespace PManager.ViewModel
         {
             using (var client = new HttpClient())
             {
-                string url = $"{ApiUrl}?q=cybersecurity&apiKey={ApiKey}";
+                string url = $"{ApiUrl}?q=cybersecurity&apiKey={ApiKey}&pageSize=15";
 
                 try
                 {
@@ -150,7 +151,7 @@ namespace PManager.ViewModel
                 }
                 catch (HttpRequestException ex)
                 {
-                    
+                    throw;
                 }
             }
         }
@@ -158,7 +159,7 @@ namespace PManager.ViewModel
         public class NewsItem
         {
             public string Title { get; set; }
-            public string Description{ get; set; }
+            public string Description { get; set; }
             public string Date { get; set; }
             public string ImageUrl { get; set; }
         }

@@ -10,6 +10,11 @@ using System.Windows.Input;
 
 namespace PManager.ViewModel
 {
+    /// <summary>
+    /// View model utilizado para representar los datos de un usuario en el formulario de registro.
+    /// Contiene propiedades que representan los campos del formulario, como el nombre, el correo electrónico, etc.
+    /// Este view model se utiliza para recopilar los datos ingresados por el usuario y enviarlos al servicio de API de usuario para el registro.
+    /// </summary>
     public class RegisterViewModel : BaseViewModel
     {
 

@@ -8,6 +8,11 @@ using System.Windows.Media.Imaging;
 
 namespace PManager.ViewModel
 {
+    /// <summary>
+    /// View model utilizado para representar los datos y la lógica relacionados con la configuración de la aplicación.
+    /// Contiene propiedades y comandos utilizados para mostrar y gestionar la configuración de la aplicación en la vista correspondiente.
+    /// Este view model se encarga de coordinar la interacción entre otros view models y la vista de configuración.
+    /// </summary>
     public class SettingsViewModel : BaseViewModel
     {
         private UserContext _currentUserAccount = UserContext.Instance;

@@ -8,6 +8,11 @@ using System.Windows.Input;
 
 namespace PManager.ViewModel
 {
+    /// <summary>
+    /// View model utilizado para representar los datos y la lógica relacionados con la suscripción de un usuario a una funcionalidad o servicio.
+    /// Contiene propiedades y comandos utilizados en el proceso de suscripción, como la selección de opciones y la confirmación de la suscripción.
+    /// Este view model se encarga de recopilar los datos relacionados con la suscripción y coordinar su procesamiento y confirmación.
+    /// </summary>
     public class SuscriptionViewModel : BaseViewModel
     {
 
@@ -82,7 +87,7 @@ namespace PManager.ViewModel
                     BackUp = File.ReadAllBytes(sqliteBackupPath)
                 };
 
-                UserApiService.InsertSuscribtor(user);
+                //UserApiService.InsertSuscribtor(user);
                 _currentUserAccount.CurrentUser.SessionToken = UserApiService.LogIn(_currentUserAccount.CurrentUser.Email, _currentUserAccount.CurrentUser.Password).Result ?? String.Empty;
             }
             catch { }
