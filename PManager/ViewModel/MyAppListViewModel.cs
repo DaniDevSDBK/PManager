@@ -49,7 +49,7 @@ namespace PManager.ViewModel
             {
                 ContentList = new ObservableCollection<ContentViewModel>();
 
-                foreach (var item in appRepo.GetContentList(appRegister.AppName))
+                foreach (var item in appRepo.GetContentList(appRegister.AppName, user.CurrentUser.Id))
                 {
                     var contentViewModel = new ContentViewModel { UserAppName = item.UserAppName, UserAppPassword = item.UserAppPassword };
                     contentViewModel.ItemDeleted += OnItemDeleted;

@@ -37,8 +37,7 @@ namespace PManager.Utils
             if (string.IsNullOrEmpty(privateKey))
             {
                 // Genera una nueva clave privada
-                //privateKey = rsa.ToXmlString(true);
-                privateKey = "<RSAKeyValue><Modulus>yyUG6hZxvBNa8ax+CHiTso3IAz/uryCwaoG7PRfx9JzmlW39tJ//fVjj3hGsvW/JcmNz2kgp4qPvvhWmuzUrxu0Ty9ItleMo6ceSEND+SHxiEIlyfZULRYgLugEAXm0P6ceY3TSlxyRXNjzaqeLeQRtaJSZdXscf7fUZ8nV0Jd0=</Modulus><Exponent>AQAB</Exponent><P>9rqfVsM95jzNjakE1K//lmi8B4QqLoQX0s1hH++VRhW139S4Y6klRf8ELFI+atDmaU7fWWr77DCREnUA7hAXOw==</P><Q>0scmiEm3EtvJwjiT0TEu1mcNSm9aNl8fEAvOTKb5zHA5a+fS893hY5/fizYeDXAKMffjfZJEw75fjsQgvPrVxw==</Q><DP>elavC2ZkGvWrNsLIEm3yXbIxCckO4WG+LliIAD3b1pSNSh9ADqqgQMTiXNeq+2v50924Aa56m/K4/F3nyCNSYQ==</DP><DQ>CaETf5JujKwB0Z+oERyAGUdn8giYRHegAamoaRQPwWk3Fljm6EEwtM5u9fso8FA4BwReHjR6c77Uur73B+slrQ==</DQ><InverseQ>WQoTHHVp4eyVf7n60ezLkk6OYNXMRYSxbAz4MVbDhuOws+ge9XOAgyX8n+sZ0kKvXnPkY/vlU0DKqaPzWFTbZA==</InverseQ><D>WzIzKXGL+3/A6w+hwNHIlHbb3MGduFb3e8jjsqiGQWcSiPDI3YaaXr5CBZZvstd1WvnUr6CH1Sv9W5tCr3ZOQQEX873S3wpU64C54yiPtvxYkcoTIXEB+pkk2FuKKMEfgiiKnuGihYxSJRGfAgwjtVjZ2t+BaeDFaGR4X6MOm60=</D></RSAKeyValue>";
+                privateKey = GeneratePrivateKey();
 
                 // Almacena la clave privada en la base de datos asociada al usuario actual
                 userRepo.InsertOrUpdateUserPrivateKey(uc.CurrentUser.Id, privateKey);
@@ -92,6 +91,20 @@ namespace PManager.Utils
             string privateKey = userRepo.GetUserPrivateKey(userId);
 
             return privateKey;
+        }
+
+        private static string GeneratePrivateKey()
+        {
+            using (var rsa = new RSACryptoServiceProvider())
+            {
+                // Genera una nueva clave privada de 2048 bits
+                rsa.KeySize = 2048;
+
+                // Exporta la clave privada en formato XML
+                string privateKey = rsa.ToXmlString(true);
+
+                return privateKey;
+            }
         }
     }
 }

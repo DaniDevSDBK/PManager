@@ -57,7 +57,7 @@
 
     </Window.InputBindings>
 
-    <Border CornerRadius="25" BorderThickness="5" >
+    <Border CornerRadius="5" BorderThickness="5" Background="Yellow">
 
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -83,7 +83,7 @@
 
 
                 <!--Navigation Menu-->
-                <Border CornerRadius="20,0,0,20" Grid.Column="0">
+                <Border Grid.Column="0">
 
                     <Border.Background>
 
@@ -213,7 +213,7 @@
             
 
             <!--Content Menu-->
-            <Border CornerRadius="0,20,20,0" Grid.Column="1">
+            <Border CornerRadius="0,30,30,0" Grid.Column="1">
 
                 <Border.Background>
 

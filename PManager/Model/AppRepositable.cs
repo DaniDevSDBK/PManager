@@ -1,4 +1,5 @@
-﻿using PManager.ViewModel;
+﻿using PManager.Repositorios;
+using PManager.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,6 @@ namespace PManager.Model
         AppModel GetAppById(int id);
         AppModel GetAppByName(string name);
         List<AppModel> UpdateData(int userId);
-        List<ContentViewModel> GetContentList(string _appName);
+        List<ContentViewModel> GetContentList(string _appName, int id);
     }
 }

@@ -1,4 +1,6 @@
-﻿using PManager.Model;
+﻿using Google.Protobuf.WellKnownTypes;
+using Microsoft.VisualBasic.ApplicationServices;
+using PManager.Model;
 using PManager.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -208,7 +210,7 @@ namespace PManager.Repositorios
         /// </summary>
         /// <param name="_appName"></param>
         /// <returns></returns>
-        public List<ContentViewModel> GetContentList(string _appName)
+        public List<ContentViewModel> GetContentList(string appName, int id)
         {
             List<ContentViewModel> contentList = new List<ContentViewModel>();
             ContentViewModel _content = null;
@@ -218,7 +220,9 @@ namespace PManager.Repositorios
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT userAppName, userAppPassword FROM APP JOIN UserApp USING(IDAPP) WHERE NAME='" + _appName + "'";
+                command.CommandText = "SELECT userAppName, userAppPassword FROM APP JOIN UserApp USING(IDAPP) WHERE NAME=@APPNAME AND IDUSER = @IDUSER";
+                command.Parameters.Add("@APPNAME", DbType.String).Value = appName;
+                command.Parameters.Add("@IDUSER", DbType.String).Value = id;
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())

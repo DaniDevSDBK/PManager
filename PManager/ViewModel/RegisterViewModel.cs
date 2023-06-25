@@ -48,7 +48,7 @@ namespace PManager.ViewModel
 
                 if (UserName.Length>=4 && !String.IsNullOrWhiteSpace(UserName) && !String.IsNullOrWhiteSpace(Email) && !String.IsNullOrWhiteSpace(Email) && !String.IsNullOrWhiteSpace(Password.ToString()) && !String.IsNullOrWhiteSpace(ConfirmPassword.ToString()))
                 {
-                    if (!CheckIfEmailExits() && Password.ToString().Equals(ConfirmPassword.ToString()))
+                    if (!CheckIfEmailExits() && SecureStringToString(Password).Equals(SecureStringToString(ConfirmPassword)))
                     {
 
                         var newUser = new UserModel();
@@ -86,7 +86,7 @@ namespace PManager.ViewModel
                     }
                     else
                     {
-                        ErrorMessage = "La contraseña no coincide. ";
+                        ErrorMessage = "El email ya existe. ";
                     }
                 }
                 else
