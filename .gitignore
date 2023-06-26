@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/PManager/Utils/SecurityService.cs
+/READMEResources/index.html
