@@ -10,7 +10,7 @@ Este proyecto es un ejemplo de una aplicación sencilla creada como parte de un 
 
 - [Generador de Contraseñas]: Genera Contraseñas Aleatorias.
 - [Guarda tus Contraseñas]: Guarda las contraseñas utilizando RSA.
-- [2 roles de usuario]: (Planteado pero no implementado del todo).
+- [Roles de usuario]: (Planteado pero no implementado del todo).
 
 ## Capturas de Pantalla
   <div>
