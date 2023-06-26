@@ -79,6 +79,8 @@ namespace PManager.ViewModel
                     break;
                 }
             }
+
+            RefreshView();
         }
     }
 }
