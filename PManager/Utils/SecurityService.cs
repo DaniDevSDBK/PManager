@@ -21,8 +21,7 @@ namespace PManager.Utils
         private static RSACryptoServiceProvider rsa;
         private static UserRepo userRepo;
         private static UserContext uc = UserContext.Instance;
-        private static readonly string publicKey = "<RSAKeyValue><Modulus>wS80aHnSliUoAxtZOuH3beicDsDxCkhPTyQsOCOBbyNgrlsdSL11nyQ2d5cir4vQ2rjkbKkeQesEUE2dCKykeoAwj0QKgHW+bren4Jggjp+zfJ0IS/idBJCt+ata9XiwhNbDbqeeV+9uUQdI/12wdlREpiETxMHH1R3T82vvq4Wn424s/kR2B1Pu4pInHQ5mWL+zQmnjpqSLDSmvM5woPvsa5YSB6W4jrAoo9KLtbrppgGhLVFos7mMtVb8YxxGJst7OfBXZtq/ZP5xzE74/lmZ27Y/GlEZX732kaxTXgSFxYQCUOROKNOSIxSoQebqHs8lEGzEjvphtQUaOr81WUQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
-
+       
         /// <summary>
         /// Genera las claves pública y privada RSA y las almacena en la base de datos si no existen.
         /// </summary>
