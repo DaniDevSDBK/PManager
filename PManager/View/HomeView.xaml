@@ -46,8 +46,8 @@
                     </StackPanel.Resources>
 
                     <StackPanel>
-                        <TextBlock Text="Creative Commons Attribution-NonCommercial 4.0 International License" Style="{StaticResource LicenseTextStyle}" />
-                        <TextBlock Text="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." Style="{StaticResource LicenseTextStyle}" />
+                        <TextBlock Text="GNU General Public License v3.0" Style="{StaticResource LicenseTextStyle}" />
+                        <TextBlock Text="This work is licensed under the GNU General Public License v3.0." Style="{StaticResource LicenseTextStyle}" />
                         <TextBlock Text="You are free to:" Style="{StaticResource LicenseTextStyle}" />
 
                         <StackPanel Margin="20">
@@ -59,34 +59,34 @@
 
                         <StackPanel Margin="20">
                             <TextBlock Text="- Attribution: You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use." Style="{StaticResource LicenseTextStyle}" />
-                            <TextBlock Text="- NonCommercial: You may not use the material for commercial purposes." Style="{StaticResource LicenseTextStyle}" />
+                            <TextBlock Text="- ShareAlike: If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original." Style="{StaticResource LicenseTextStyle}" />
                             <TextBlock Text="- No additional restrictions: You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits." Style="{StaticResource LicenseTextStyle}" />
                         </StackPanel>
 
-                        <TextBlock Text="For more information about the CC BY-NC license and terms of use, you can visit the Creative Commons website at https://creativecommons.org/licenses/by-nc/4.0/." Style="{StaticResource LicenseTextStyle}" />
+                        <TextBlock Text="For more information about the GNU GPL-3.0 license and terms of use, you can visit the GNU website at https://www.gnu.org/licenses/gpl-3.0.en.html." Style="{StaticResource LicenseTextStyle}" />
                     </StackPanel>
 
                     <Separator Background="WhiteSmoke" Grid.Row="1" Margin="10"/>
 
                     <StackPanel>
-                        <TextBlock Text="Licencia Creative Commons Atribución-NoComercial 4.0 Internacional" Style="{StaticResource LicenseTextStyle}" />
-                        <TextBlock Text="Esta obra está bajo una Licencia Creative Commons Atribución-NoComercial 4.0 Internacional." Style="{StaticResource LicenseTextStyle}" />
-                        <TextBlock Text="Usted es libre de:" Style="{StaticResource LicenseTextStyle}" />
+                        <TextBlock Text="GNU General Public License v3.0" Style="{StaticResource LicenseTextStyle}" />
+                        <TextBlock Text="This work is licensed under the GNU General Public License v3.0." Style="{StaticResource LicenseTextStyle}" />
+                        <TextBlock Text="You are free to:" Style="{StaticResource LicenseTextStyle}" />
 
                         <StackPanel Margin="20">
-                            <TextBlock Text="- Compartir: copiar y redistribuir el material en cualquier medio o formato." Style="{StaticResource LicenseTextStyle}" />
-                            <TextBlock Text="- Adaptar: remezclar, transformar y construir a partir del material." Style="{StaticResource LicenseTextStyle}" />
+                            <TextBlock Text="- Share: copy and redistribute the material in any medium or format." Style="{StaticResource LicenseTextStyle}" />
+                            <TextBlock Text="- Adapt: remix, transform, and build upon the material." Style="{StaticResource LicenseTextStyle}" />
                         </StackPanel>
 
-                        <TextBlock Text="Bajo los siguientes términos:" Style="{StaticResource LicenseTextStyle}" />
+                        <TextBlock Text="Under the following terms:" Style="{StaticResource LicenseTextStyle}" />
 
                         <StackPanel Margin="20">
-                            <TextBlock Text="- Atribución: debe dar crédito al autor original, proporcionar un enlace a la licencia e indicar si se han realizado cambios. Puede hacerlo de cualquier manera razonable, pero no de una manera que sugiera que el licenciante lo respalda a usted o su uso." Style="{StaticResource LicenseTextStyle}" />
-                            <TextBlock Text="- NoComercial: no puede utilizar el material con fines comerciales." Style="{StaticResource LicenseTextStyle}" />
-                            <TextBlock Text="- No hay restricciones adicionales: no puede aplicar términos legales ni medidas tecnológicas que restrinjan legalmente a otras personas a hacer cualquier cosa que permita la licencia." Style="{StaticResource LicenseTextStyle}" />
+                            <TextBlock Text="- Attribution: You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use." Style="{StaticResource LicenseTextStyle}" />
+                            <TextBlock Text="- ShareAlike: If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original." Style="{StaticResource LicenseTextStyle}" />
+                            <TextBlock Text="- No additional restrictions: You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits." Style="{StaticResource LicenseTextStyle}" />
                         </StackPanel>
 
-                        <TextBlock Text="Para obtener más información sobre la licencia CC BY-NC y los términos de uso, puedes visitar el sitio web de Creative Commons en https://creativecommons.org/licenses/by-nc/4.0/." Style="{StaticResource LicenseTextStyle}" />
+                        <TextBlock Text="For more information about the GNU GPL-3.0 license and terms of use, you can visit the GNU website at https://www.gnu.org/licenses/gpl-3.0.en.html." Style="{StaticResource LicenseTextStyle}" />
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
