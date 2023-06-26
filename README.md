@@ -68,4 +68,4 @@ Este proyecto fue desarrollado por [DaniDevSDBK] como proyecto final de curso.
 
 ## Licencia
 
-Este proyecto se distribuye bajo la Licencia [./LICENSE.txt].
+Este proyecto se distribuye bajo la Licencia [(./LICENSE.txt)].
