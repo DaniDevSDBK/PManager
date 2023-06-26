@@ -99,7 +99,7 @@ This project was developed by [DaniDevSDBK](https://github.com/DaniDevSDBK) as a
 
 ## Licencia
 
-Este proyecto se distribuye bajo la Licencia [GNU GPL-3.0](./LICENSE.txt).
+Este proyecto se distribuye bajo la Licencia [GNU GPL-3.0 License](./LICENSE.txt).
 ## License
 
 This project is distributed under the [GNU GPL-3.0 License](./LICENSE.txt).
