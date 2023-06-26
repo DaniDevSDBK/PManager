@@ -16,15 +16,15 @@ Este proyecto es un ejemplo de una aplicación sencilla creada como parte de un 
 
 <Carousel>
   <div>
-    <img src="./READMEResources/Register" alt="Register" />
+    <img src="./READMEResources/Register.png" alt="Register" />
     <p>Descripción de la captura de pantalla 1</p>
   </div>
   <div>
-    <img src="./READMEResources/LogIn" alt="Captura de pantalla 2" />
+    <img src="./READMEResources/LogIn.png" alt="Captura de pantalla 2" />
     <p>Descripción de la captura de pantalla 2</p>
   </div>
   <div>
-    <img src="./READMEResources/HomeView" alt="Captura de pantalla 3" />
+    <img src="./READMEResources/HomeView.png" alt="Captura de pantalla 3" />
     <p>Descripción de la captura de pantalla 3</p>
   </div>
 </Carousel>
