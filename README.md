@@ -15,49 +15,11 @@ Este proyecto es un ejemplo de una aplicación sencilla creada como parte de un 
 ## Capturas de Pantalla
 <!DOCTYPE html>
 <html>
-<head>
-  <style>
-  
-    .slider-container {
-      width: 500px;
-      height: 300px;
-      overflow: hidden;
-      position: relative;
-    }
-
-   
-    .slider-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    
-    .slider-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .slider-nav.right {
-      right: 0;
-    }
-  </style>
-</head>
 <body>
   <div class="slider-container">
-    <img class="slider-image" src="image1.jpg" alt="Image 1">
-    <img class="slider-image" src="image2.jpg" alt="Image 2">
-    <img class="slider-image" src="image3.jpg" alt="Image 3">
+    <img class="slider-image" src="./READMEResources/Register.png" alt="Image 1">
+    <img class="slider-image" src="./READMEResources/LogIn.png" alt="Image 2">
+    <img class="slider-image" src="./READMEResources/HomeView.png" alt="Image 3">
     <div class="slider-nav" onclick="prevSlide()">&#10094;</div>
     <div class="slider-nav right" onclick="nextSlide()">&#10095;</div>
   </div>
