@@ -8,6 +8,10 @@ Proyecto Final Curso
 
 Este proyecto es un ejemplo de una aplicación sencilla creada como parte de un proyecto escolar. La aplicación [KeyVault] permite [gestionar tus usuarios y contraseñas]. Fue desarrollada como una demostración para ilustrar los conceptos aprendidos durante el curso.
 
+## Description
+
+This project is an example of a simple application created as part of a school project. The application, KeyVault, allows you to manage your users and passwords. It was developed as a demonstration to illustrate the concepts learned during the course.
+
 ## Características
 
 - [Generador de Contraseñas]: Genera Contraseñas Aleatorias.
