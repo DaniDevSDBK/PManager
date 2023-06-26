@@ -13,21 +13,79 @@ Este proyecto es un ejemplo de una aplicación sencilla creada como parte de un 
 - [2 roles de usuario]: (Planteado pero no implementado del todo).
 
 ## Capturas de Pantalla
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  
+    .slider-container {
+      width: 500px;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
 
-<Carousel>
-  <div>
-    <img src="./READMEResources/Register.png" alt="Register" />
-    <p>Descripción de la captura de pantalla 1</p>
+   
+    .slider-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .slider-nav.right {
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider-container">
+    <img class="slider-image" src="image1.jpg" alt="Image 1">
+    <img class="slider-image" src="image2.jpg" alt="Image 2">
+    <img class="slider-image" src="image3.jpg" alt="Image 3">
+    <div class="slider-nav" onclick="prevSlide()">&#10094;</div>
+    <div class="slider-nav right" onclick="nextSlide()">&#10095;</div>
   </div>
-  <div>
-    <img src="./READMEResources/LogIn.png" alt="Captura de pantalla 2" />
-    <p>Descripción de la captura de pantalla 2</p>
-  </div>
-  <div>
-    <img src="./READMEResources/HomeView.png" alt="Captura de pantalla 3" />
-    <p>Descripción de la captura de pantalla 3</p>
-  </div>
-</Carousel>
+
+  <script>
+    var currentSlide = 0;
+    var slides = document.getElementsByClassName("slider-image");
+
+    function prevSlide() {
+      slides[currentSlide].style.transform = "translateX(100%)";
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      slides[currentSlide].style.transform = "translateX(-100%)";
+      setTimeout(function () {
+        slides[currentSlide].style.transform = "translateX(0)";
+      }, 100);
+    }
+    
+    function nextSlide() {
+      slides[currentSlide].style.transform = "translateX(-100%)";
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].style.transform = "translateX(100%)";
+      setTimeout(function () {
+        slides[currentSlide].style.transform = "translateX(0)";
+      }, 100);
+    }
+  </script>
+</body>
+</html>
 
 ## Tecnologías Utilizadas
 
