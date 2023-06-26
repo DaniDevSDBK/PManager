@@ -1,6 +1,8 @@
 # PManager
+[![Version](https://img.shields.io/badge/version-1.0-blue.svg)](https://github.com/tu-usuario/tu-proyecto/releases)
+[![License](https://img.shields.io/badge/license-GNU%20GPL%20v3.0-blue.svg)](https://opensource.org/licenses/GPL-3.0)
 
-Descripción breve del proyecto en una o dos frases.
+Proyecto Final Curso
 
 ## Descripción
 
@@ -66,4 +68,4 @@ Este proyecto fue desarrollado por [DaniDevSDBK] como proyecto final de curso.
 
 ## Licencia
 
-Este proyecto se distribuye bajo la Licencia [Creative Commons Attribution-NonCommercial 4.0 International License]. Consulta el archivo LICENSE para más información.
+Este proyecto se distribuye bajo la Licencia [./LICENSE.txt].
