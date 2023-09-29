@@ -18,7 +18,7 @@ This project is an example of a simple application created as part of a school p
 - [Guarda tus Contraseñas]: Guarda las contraseñas utilizando RSA.
 - [Roles de usuario]: (Planteado pero no implementado del todo).
 
-##Features
+## Features
 
 - [Password Generator]: Generates random passwords.
 - [Save Your Passwords]: Stores passwords using RSA encryption.
